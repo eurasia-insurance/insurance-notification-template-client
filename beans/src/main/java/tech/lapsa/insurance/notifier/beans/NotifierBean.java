@@ -6,7 +6,6 @@ import java.util.logging.Logger;
 
 import javax.annotation.Resource;
 import javax.ejb.Stateless;
-import javax.inject.Inject;
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
 import javax.jms.Destination;
@@ -30,8 +29,7 @@ import tech.lapsa.java.commons.function.MyObjects;
 @Stateless
 public class NotifierBean implements Notifier {
 
-    @Inject
-    private Logger logger;
+    private final Logger logger = Logger.getLogger(Notifier.class.getPackage().getName());
 
     @Resource(name = JNDI_JMS_CONNECTION_FACTORY)
     private ConnectionFactory connectionFactory;
