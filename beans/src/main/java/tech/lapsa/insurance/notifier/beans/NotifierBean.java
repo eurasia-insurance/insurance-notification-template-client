@@ -22,7 +22,6 @@ import com.lapsa.insurance.domain.casco.CascoRequest;
 import com.lapsa.insurance.domain.policy.PolicyRequest;
 
 import tech.lapsa.insurance.notifier.NotificationChannel;
-import tech.lapsa.insurance.notifier.NotificationFailed;
 import tech.lapsa.insurance.notifier.NotificationRecipientType;
 import tech.lapsa.insurance.notifier.NotificationRequestStage;
 import tech.lapsa.insurance.notifier.Notifier;
@@ -57,7 +56,7 @@ public class NotifierBean implements Notifier {
 
     @Override
     public void assignRequestNotification(NotificationChannel channel, NotificationRecipientType recipientType,
-	    NotificationRequestStage stage, Request request) throws NotificationFailed {
+	    NotificationRequestStage stage, Request request) {
 
 	logger.info(String.format(
 		"Request %1$s notification received on channel : %2$s, recipientType : %3$s requestStage : %4$s", //

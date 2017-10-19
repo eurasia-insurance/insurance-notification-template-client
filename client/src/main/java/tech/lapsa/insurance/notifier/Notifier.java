@@ -9,7 +9,7 @@ public interface Notifier {
 
     void assignRequestNotification(NotificationChannel channel, NotificationRecipientType recipientType,
 	    NotificationRequestStage stage,
-	    Request request) throws NotificationFailed;
+	    Request request);
 
     NotificationBuilder newNotificationBuilder();
 
