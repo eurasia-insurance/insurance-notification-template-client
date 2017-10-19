@@ -45,6 +45,8 @@ public abstract class APushRequestNotificationDrivenBean<T extends Request> exte
 	super(objectClazz);
     }
 
+    private final Logger logger = Logger.getLogger(APushRequestNotificationDrivenBean.class.getPackage().getName());
+
     protected abstract NotificationMessages getTitleMessageBudnle();
 
     protected abstract NotificationMessages getBodyMessageBudnle();
@@ -52,9 +54,6 @@ public abstract class APushRequestNotificationDrivenBean<T extends Request> exte
     protected abstract String getChannelIdConfigurationProperty();
 
     protected abstract String getPushURLConfigurationProperty();
-
-    @Inject
-    private Logger logger;
 
     @Resource(lookup = JNDI_RESOURCE_CONFIGURATION)
     private Properties configurationProperties;
