@@ -7,6 +7,7 @@ import com.lapsa.insurance.domain.Request;
 @Local
 public interface Notifier {
 
+    @Deprecated
     default void assignRequestNotification(NotificationChannel channel, NotificationRecipientType recipientType,
 	    NotificationRequestStage stage, Request request) {
 	newNotificationBuilder() //
