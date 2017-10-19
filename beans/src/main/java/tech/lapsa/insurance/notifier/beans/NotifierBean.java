@@ -2,8 +2,6 @@ package tech.lapsa.insurance.notifier.beans;
 
 import static tech.lapsa.insurance.notifier.beans.Constants.*;
 
-import java.util.logging.Logger;
-
 import javax.annotation.Resource;
 import javax.ejb.Stateless;
 import javax.jms.Connection;
@@ -29,8 +27,6 @@ import tech.lapsa.java.commons.function.MyObjects;
 @Stateless
 public class NotifierBean implements Notifier {
 
-    private final Logger logger = Logger.getLogger(Notifier.class.getPackage().getName());
-
     @Resource(name = JNDI_JMS_CONNECTION_FACTORY)
     private ConnectionFactory connectionFactory;
 
@@ -51,27 +47,6 @@ public class NotifierBean implements Notifier {
 
     @Resource(name = JNDI_JMS_DEST_NEW_CASCO_USER_EMAIL)
     private Destination newCascoUserEmail;
-
-    @Override
-    public void assignRequestNotification(NotificationChannel channel, NotificationRecipientType recipientType,
-	    NotificationRequestStage stage, Request request) {
-
-	logger.info(String.format(
-		"Request %1$s notification received on channel : %2$s, recipientType : %3$s requestStage : %4$s", //
-		request, // 1
-		channel, // 2
-		recipientType, // 3
-		stage // 4
-	));
-
-	newNotificationBuilder() //
-		.withChannel(channel) //
-		.withEvent(stage) //
-		.withRecipient(recipientType) //
-		.forRequest(request) //
-		.build() //
-		.send();
-    }
 
     @Override
     public NotificationBuilder newNotificationBuilder() {

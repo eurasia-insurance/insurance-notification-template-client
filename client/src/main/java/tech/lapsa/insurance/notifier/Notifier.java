@@ -7,9 +7,16 @@ import com.lapsa.insurance.domain.Request;
 @Local
 public interface Notifier {
 
-    void assignRequestNotification(NotificationChannel channel, NotificationRecipientType recipientType,
-	    NotificationRequestStage stage,
-	    Request request);
+    default void assignRequestNotification(NotificationChannel channel, NotificationRecipientType recipientType,
+	    NotificationRequestStage stage, Request request) {
+	newNotificationBuilder() //
+		.withChannel(channel) //
+		.withEvent(stage) //
+		.withRecipient(recipientType) //
+		.forRequest(request) //
+		.build() //
+		.send();
+    }
 
     NotificationBuilder newNotificationBuilder();
 
