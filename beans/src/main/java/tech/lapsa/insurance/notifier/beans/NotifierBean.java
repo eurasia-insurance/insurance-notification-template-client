@@ -82,7 +82,7 @@ public class NotifierBean implements Notifier {
 	}
 
 	@Override
-	public NotificationBuilder forRequest(Request request) {
+	public NotificationBuilder forEntity(Request request) {
 	    this.request = MyObjects.requireNonNull(request, "request");
 	    return this;
 	}

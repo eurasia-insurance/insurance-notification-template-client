@@ -14,7 +14,7 @@ public interface Notifier {
 		.withChannel(channel) //
 		.withEvent(stage) //
 		.withRecipient(recipientType) //
-		.forRequest(request) //
+		.forEntity(request) //
 		.build() //
 		.send();
     }
@@ -29,7 +29,7 @@ public interface Notifier {
 
 	NotificationBuilder withEvent(NotificationRequestStage stage);
 
-	NotificationBuilder forRequest(Request request);
+	NotificationBuilder forEntity(Request request);
 
 	Notification build();
 
