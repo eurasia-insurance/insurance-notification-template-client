@@ -4,8 +4,6 @@ import static tech.lapsa.insurance.notifier.beans.Constants.*;
 
 import java.time.Duration;
 import java.time.Instant;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import javax.ejb.MessageDriven;
 import javax.jms.MessageListener;
@@ -16,6 +14,7 @@ import com.lapsa.pushapi.services.PushFactoryException;
 import com.lapsa.pushapi.services.PushSendError;
 import com.lapsa.pushapi.services.PushSender;
 
+import tech.lapsa.java.commons.logging.MyLogger;
 import tech.lapsa.javax.jms.ObjectConsumerListener;
 
 @MessageDriven(mappedName = JNDI_JMS_DEST_PUSH_JOBS)
@@ -25,7 +24,9 @@ public class PushJobHandlerDrivenBean extends ObjectConsumerListener<PushJob> im
 	super(PushJob.class);
     }
 
-    private Logger logger = Logger.getLogger(PushJobHandlerDrivenBean.class.getPackage().getName());
+    private static final MyLogger logger = MyLogger.newBuilder() //
+	    .withNameOf(PushJobHandlerDrivenBean.class) //
+	    .build();
 
     @Override
     protected void accept(PushJob job) {
@@ -38,30 +39,30 @@ public class PushJobHandlerDrivenBean extends ObjectConsumerListener<PushJob> im
 		    .builder() //
 		    .buildFactory(job.getFactoryProperties()).createSender();
 	} catch (PushFactoryException e) {
-	    logger.log(Level.WARNING, "ERROR SENDER INITIALIZATION", e);
+	    logger.WARNING.log(e, "ERROR SENDER INITIALIZATION");
 	}
 
 	if (sender != null)
 	    try {
-		logger.info(String.format("SENDING %1$s...", job));
+		logger.INFO.log("SENDING %1$s...", job);
 		sender.send(job.getMessage(), job.getEndpoint());
 		Duration d = Duration.between(b, Instant.now());
-		logger.info(String.format("SUCCESSFULY SENT IN %2$.3f SEC %1$s", //
+		logger.INFO.log("SUCCESSFULY SENT IN %2$.3f SEC %1$s", //
 			job, // 1
-			(double) d.toNanos() / 1000000000)// 2
+			(double) d.toNanos() / 1000000000// 2
 		);
 	    } catch (PushEndpointNotValid e) {
 		Duration d = Duration.between(b, Instant.now());
-		logger.log(Level.INFO, String.format("ENDPOINT IS NOT VALID %1$s (%2$.3f seconds)", //
+		logger.INFO.log("ENDPOINT IS NOT VALID %1$s (%2$.3f seconds)", //
 			job.getEndpoint(), // 1
-			(double) d.toNanos() / 1000000000)// 2
+			(double) d.toNanos() / 1000000000// 2
 		);
 	    } catch (PushSendError e) {
 		Duration d = Duration.between(b, Instant.now());
-		logger.log(Level.WARNING, String.format("SEND ERROR %1$s (%2$.3f seconds)", //
+		logger.WARNING.log(e, "SEND ERROR %1$s (%2$.3f seconds)", //
 			job, // 1
-			(double) d.toNanos() / 1000000000)// 2
-			, e);
+			(double) d.toNanos() / 1000000000// 2
+		);
 	    }
     }
 }

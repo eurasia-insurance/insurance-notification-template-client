@@ -7,8 +7,6 @@ import java.net.URL;
 import java.util.List;
 import java.util.Locale;
 import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
@@ -33,6 +31,7 @@ import com.lapsa.pushapi.services.PushMessage;
 
 import tech.lapsa.insurance.notifier.beans.NotificationMessages;
 import tech.lapsa.insurance.notifier.beans.mdb.push.PushJob;
+import tech.lapsa.java.commons.logging.MyLogger;
 import tech.lapsa.lapsa.text.TextFactory;
 import tech.lapsa.lapsa.text.TextFactory.TextModelBuilder.TextModel;
 import tech.lapsa.patterns.dao.NotFound;
@@ -45,7 +44,9 @@ public abstract class APushRequestNotificationDrivenBean<T extends Request> exte
 	super(objectClazz);
     }
 
-    private final Logger logger = Logger.getLogger(APushRequestNotificationDrivenBean.class.getPackage().getName());
+    private final MyLogger logger = MyLogger.newBuilder() //
+	    .withNameOf(this.getClass()) //
+	    .build();
 
     protected abstract NotificationMessages getTitleMessageBudnle();
 
@@ -96,8 +97,7 @@ public abstract class APushRequestNotificationDrivenBean<T extends Request> exte
 	    try {
 		url = new URL(pushUrl);
 	    } catch (MalformedURLException e1) {
-		logger.log(Level.WARNING,
-			String.format("Push channel id %1$s is not a valid URL resource", pushUrl), e1);
+		logger.WARN.log(e1, "Push channel id %1$s is not a valid URL resource", pushUrl);
 	    }
 	}
 
