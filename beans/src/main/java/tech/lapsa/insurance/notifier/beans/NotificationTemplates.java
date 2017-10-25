@@ -10,6 +10,7 @@ public enum NotificationTemplates implements LocalizedElement {
     NEW_CASCO_USER_EMAIL_TEMPLATE, //
     NEW_POLICY_COMPANY_EMAIL_TEMPLATE, //
     NEW_POLICY_USER_EMAIL_TEMPLATE, //
+    INUSNRANCE_PAID_COMPANY_EMAIL_TEMPLATE, //
     //
     ;
 

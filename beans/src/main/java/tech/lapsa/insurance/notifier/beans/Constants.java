@@ -16,6 +16,8 @@ public final class Constants {
     public static final String JNDI_JMS_DEST_NEW_POLICY_USER_EMAIL = "insurance/jms/messaging/policyNewUserEmail";
     public static final String JNDI_JMS_DEST_NEW_INSURANCE_COMPANY_PUSH = "insurance/jms/messaging/newInsuranceCompanyPush";
     public static final String JNDI_JMS_DEST_NEW_CALLBACK_COMPANY_PUSH = "insurance/jms/messaging/newCallbackCompanyPush";
+    public static final String JNDI_JMS_DEST_REQUEST_PAID_COMPANY_EMAIL = "insurance/jms/messaging/requestPaidCompanyEmail";
+
     public static final String JNDI_JMS_DEST_PUSH_JOBS = "insurance/jms/messaging/pushJobs";
 
     public static final String PROPERTY_INSTANCE_VERB = "mesenger.instance.verb";

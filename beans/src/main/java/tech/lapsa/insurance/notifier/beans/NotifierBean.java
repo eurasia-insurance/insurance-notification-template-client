@@ -48,6 +48,9 @@ public class NotifierBean implements Notifier {
     @Resource(name = JNDI_JMS_DEST_NEW_CASCO_USER_EMAIL)
     private Destination newCascoUserEmail;
 
+    @Resource(name = JNDI_JMS_DEST_REQUEST_PAID_COMPANY_EMAIL)
+    private Destination requestPaidCompanyEmail;
+
     @Override
     public NotificationBuilder newNotificationBuilder() {
 	return new NotificationBuilderImpl();
@@ -133,6 +136,21 @@ public class NotifierBean implements Notifier {
 		    break;
 		default:
 		}
+		break;
+	    case REQUEST_PAID:
+		switch (channel) {
+		case EMAIL:
+		    switch (recipientType) {
+		    case COMPANY:
+			return requestPaidCompanyEmail;
+		    default:
+			break;
+		    }
+		default:
+		    break;
+		}
+		break;
+	    default:
 		break;
 	    }
 	    throw new IllegalStateException(String.format(

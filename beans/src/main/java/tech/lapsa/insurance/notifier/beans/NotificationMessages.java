@@ -11,6 +11,7 @@ public enum NotificationMessages implements LocalizedElement {
     INSURANCE_COMPANY_PUSH_BODY, //
     CALLBACK_COMPANY_PUSH_TITLE, //
     CALLBACK_COMPANY_PUSH_BODY, //
+    INUSNRANCE_PAID_COMPANY_EMAIL_SUBJECT, //
     //
     ;
 }
