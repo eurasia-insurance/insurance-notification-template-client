@@ -7,9 +7,9 @@ import java.util.Locale;
 import javax.ejb.MessageDriven;
 import javax.inject.Inject;
 
+import com.lapsa.insurance.domain.InsuranceRequest;
 import com.lapsa.insurance.domain.Request;
 import com.lapsa.insurance.domain.crm.User;
-import com.lapsa.insurance.domain.policy.PolicyRequest;
 import com.lapsa.international.localization.LocalizationLanguage;
 
 import tech.lapsa.insurance.notifier.beans.NotificationMessages;
@@ -21,14 +21,14 @@ import tech.lapsa.javax.mail.MailFactory;
 import tech.lapsa.javax.mail.MailMessageBuilder;
 
 @MessageDriven(mappedName = JNDI_JMS_DEST_REQUEST_PAID_COMPANY_EMAIL)
-public class RequestPaidCompanyEmailDrivenBean extends AEmailRequestNotificationDrivenBean<PolicyRequest> {
+public class RequestPaidCompanyEmailDrivenBean extends AEmailRequestNotificationDrivenBean<InsuranceRequest> {
 
     @Inject
     @QRecipientCompany
     protected MailFactory mailFactory;
 
     public RequestPaidCompanyEmailDrivenBean() {
-	super(PolicyRequest.class);
+	super(InsuranceRequest.class);
     }
 
     @Override
