@@ -28,7 +28,7 @@
 		<lapsa-text.version>1.0</lapsa-text.version>
 		<pushapi-dao.version>1.0</pushapi-dao.version>
 		<!-- oldies -->
-		<insurance-lib.version>2.3</insurance-lib.version>
+		<insurance-lib.version>2.4-SNAPSHOT</insurance-lib.version>
 		<pushapi-lib.version>1.1</pushapi-lib.version>
 		<pushapi-sender-impl-default.version>1.1</pushapi-sender-impl-default.version>
 	</properties>
