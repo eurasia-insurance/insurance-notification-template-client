@@ -1,11 +1,8 @@
 package tech.lapsa.insurance.notifier.beans.mdb.push;
 
-import static tech.lapsa.insurance.notifier.beans.Constants.*;
-
 import java.time.Duration;
 import java.time.Instant;
 
-import javax.ejb.MessageDriven;
 import javax.jms.MessageListener;
 
 import com.lapsa.pushapi.services.PushEndpointNotValid;
@@ -17,7 +14,8 @@ import com.lapsa.pushapi.services.PushSender;
 import tech.lapsa.java.commons.logging.MyLogger;
 import tech.lapsa.javax.jms.ObjectConsumerListener;
 
-@MessageDriven(mappedName = JNDI_JMS_DEST_PUSH_JOBS)
+//TODO PUSH DISABLED temporary
+//@MessageDriven(mappedName = JNDI_JMS_DEST_PUSH_JOBS)
 public class PushJobHandlerDrivenBean extends ObjectConsumerListener<PushJob> implements MessageListener {
 
     protected PushJobHandlerDrivenBean() {
