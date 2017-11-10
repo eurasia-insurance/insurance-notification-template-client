@@ -12,8 +12,6 @@ import javax.jms.Message;
 import javax.jms.MessageProducer;
 import javax.jms.Session;
 
-import com.lapsa.insurance.domain.CallbackRequest;
-import com.lapsa.insurance.domain.InsuranceRequest;
 import com.lapsa.insurance.domain.Request;
 import com.lapsa.insurance.domain.casco.CascoRequest;
 import com.lapsa.insurance.domain.policy.PolicyRequest;
@@ -124,15 +122,16 @@ public class NotifierBean implements Notifier {
 		    default:
 		    }
 		case PUSH:
-		    switch (recipientType) {
-		    case COMPANY:
-			if (request instanceof InsuranceRequest)
-			    return newInsuranceCompanyPush;
-			if (request instanceof CallbackRequest)
-			    return newCallbackCompanyPush;
-			break;
-		    default:
-		    }
+		    // TODO PUSH DISABLED temporary
+		    // switch (recipientType) {
+		    // case COMPANY:
+		    // if (request instanceof InsuranceRequest)
+		    // return newInsuranceCompanyPush;
+		    // if (request instanceof CallbackRequest)
+		    // return newCallbackCompanyPush;
+		    // break;
+		    // default:
+		    // }
 		    break;
 		default:
 		}
