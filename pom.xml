@@ -25,7 +25,7 @@
 		<javax-mail.version>2.0</javax-mail.version>
 		<!-- tech -->
 		<javax-jms-commons.version>1.1-SNAPSHOT</javax-jms-commons.version>
-		<lapsa-text.version>1.0</lapsa-text.version>
+		<lapsa-text.version>1.1-SNAPSHOT</lapsa-text.version>
 		<pushapi-dao.version>1.0</pushapi-dao.version>
 		<!-- oldies -->
 		<insurance-lib.version>2.4-SNAPSHOT</insurance-lib.version>
