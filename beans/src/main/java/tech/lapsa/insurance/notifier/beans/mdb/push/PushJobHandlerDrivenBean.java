@@ -2,6 +2,7 @@ package tech.lapsa.insurance.notifier.beans.mdb.push;
 
 import java.time.Duration;
 import java.time.Instant;
+import java.util.Properties;
 
 import javax.jms.MessageListener;
 
@@ -27,7 +28,7 @@ public class PushJobHandlerDrivenBean extends ObjectConsumerListener<PushJob> im
 	    .build();
 
     @Override
-    protected void accept(PushJob job) {
+    protected void accept(PushJob job, Properties properties) {
 
 	Instant b = Instant.now();
 
