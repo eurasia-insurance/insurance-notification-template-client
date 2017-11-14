@@ -35,13 +35,14 @@ public class NewCascoUserEmailDrivenBean extends AEmailRequestNotificationDriven
     }
 
     @Override
-    protected MailMessageBuilder recipients(MailMessageBuilder builder, Request request) throws MailBuilderException {
-	RequesterData requester = request.getRequester();
+    protected MailMessageBuilder recipients(final MailMessageBuilder builder, final Request request)
+	    throws MailBuilderException {
+	final RequesterData requester = request.getRequester();
 	return builder.withTORecipient(requester.getEmail(), requester.getName());
     }
 
     @Override
-    protected Locale locale(Request request) {
+    protected Locale locale(final Request request) {
 	return request.getRequester().getPreferLanguage().getLocale();
     }
 

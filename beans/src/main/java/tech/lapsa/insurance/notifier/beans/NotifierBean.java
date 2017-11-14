@@ -65,25 +65,25 @@ public class NotifierBean implements Notifier {
 	}
 
 	@Override
-	public NotificationBuilder withChannel(NotificationChannel channel) {
+	public NotificationBuilder withChannel(final NotificationChannel channel) {
 	    this.channel = MyObjects.requireNonNull(channel, "channel");
 	    return this;
 	}
 
 	@Override
-	public NotificationBuilder withRecipient(NotificationRecipientType recipientType) {
+	public NotificationBuilder withRecipient(final NotificationRecipientType recipientType) {
 	    this.recipientType = MyObjects.requireNonNull(recipientType, "recipientType");
 	    return this;
 	}
 
 	@Override
-	public NotificationBuilder withEvent(NotificationRequestStage event) {
+	public NotificationBuilder withEvent(final NotificationRequestStage event) {
 	    this.event = MyObjects.requireNonNull(event, "event");
 	    return this;
 	}
 
 	@Override
-	public NotificationBuilder forEntity(Request request) {
+	public NotificationBuilder forEntity(final Request request) {
 	    this.request = MyObjects.requireNonNull(request, "request");
 	    return this;
 	}
@@ -91,7 +91,7 @@ public class NotifierBean implements Notifier {
 	@Override
 	public Notification build() {
 	    MyObjects.requireNonNull(request, "request");
-	    Destination destination = resolveDestination();
+	    final Destination destination = resolveDestination();
 
 	    return new NotificationImpl(destination);
 	}
@@ -166,9 +166,9 @@ public class NotifierBean implements Notifier {
 	    private final Request request;
 	    private boolean sent = false;
 
-	    private NotificationImpl(Destination destination) {
+	    private NotificationImpl(final Destination destination) {
 		this.destination = MyObjects.requireNonNull(destination, "destination");
-		this.request = MyObjects.requireNonNull(NotificationBuilderImpl.this.request, "request");
+		request = MyObjects.requireNonNull(NotificationBuilderImpl.this.request, "request");
 	    }
 
 	    @Override
@@ -176,12 +176,12 @@ public class NotifierBean implements Notifier {
 		if (sent)
 		    throw new IllegalStateException("Already sent");
 		try (Connection connection = connectionFactory.createConnection()) {
-		    Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-		    MessageProducer producer = session.createProducer(destination);
-		    Message msg = session.createObjectMessage(request);
+		    final Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+		    final MessageProducer producer = session.createProducer(destination);
+		    final Message msg = session.createObjectMessage(request);
 		    producer.send(msg);
 		    sent = true;
-		} catch (JMSException e) {
+		} catch (final JMSException e) {
 		    throw new RuntimeException("Failed to assign a notification task", e);
 		}
 	    }

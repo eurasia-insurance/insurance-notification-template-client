@@ -28,16 +28,16 @@ public class PushJobHandlerDrivenBean extends ObjectConsumerListener<PushJob> im
 	    .build();
 
     @Override
-    protected void accept(PushJob job, Properties properties) {
+    protected void accept(final PushJob job, final Properties properties) {
 
-	Instant b = Instant.now();
+	final Instant b = Instant.now();
 
 	PushSender sender = null;
 	try {
 	    sender = PushFactoryBuilderSPI.getInstance() //
 		    .builder() //
 		    .buildFactory(job.getFactoryProperties()).createSender();
-	} catch (PushFactoryException e) {
+	} catch (final PushFactoryException e) {
 	    logger.WARNING.log(e, "ERROR SENDER INITIALIZATION");
 	}
 
@@ -45,19 +45,19 @@ public class PushJobHandlerDrivenBean extends ObjectConsumerListener<PushJob> im
 	    try {
 		logger.INFO.log("SENDING %1$s...", job);
 		sender.send(job.getMessage(), job.getEndpoint());
-		Duration d = Duration.between(b, Instant.now());
+		final Duration d = Duration.between(b, Instant.now());
 		logger.INFO.log("SUCCESSFULY SENT IN %2$.3f SEC %1$s", //
 			job, // 1
 			(double) d.toNanos() / 1000000000// 2
 		);
-	    } catch (PushEndpointNotValid e) {
-		Duration d = Duration.between(b, Instant.now());
+	    } catch (final PushEndpointNotValid e) {
+		final Duration d = Duration.between(b, Instant.now());
 		logger.INFO.log("ENDPOINT IS NOT VALID %1$s (%2$.3f seconds)", //
 			job.getEndpoint(), // 1
 			(double) d.toNanos() / 1000000000// 2
 		);
-	    } catch (PushSendError e) {
-		Duration d = Duration.between(b, Instant.now());
+	    } catch (final PushSendError e) {
+		final Duration d = Duration.between(b, Instant.now());
 		logger.WARNING.log(e, "SEND ERROR %1$s (%2$.3f seconds)", //
 			job, // 1
 			(double) d.toNanos() / 1000000000// 2

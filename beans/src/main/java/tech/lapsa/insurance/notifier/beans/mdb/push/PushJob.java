@@ -16,12 +16,12 @@ public class PushJob implements Serializable {
     public PushJob() {
     }
 
-    public PushJob(PushMessage message, PushEndpoint endpoint) {
+    public PushJob(final PushMessage message, final PushEndpoint endpoint) {
 	this.message = message;
 	this.endpoint = endpoint;
     }
 
-    public PushJob(PushMessage message, PushEndpoint endpoint, Properties factoryProperties) {
+    public PushJob(final PushMessage message, final PushEndpoint endpoint, final Properties factoryProperties) {
 	this.message = message;
 	this.endpoint = endpoint;
 	this.factoryProperties = factoryProperties;
@@ -31,12 +31,12 @@ public class PushJob implements Serializable {
     public String toString() {
 	return message + " TO " + endpoint;
     }
-    
+
     public PushMessage getMessage() {
 	return message;
     }
 
-    public void setMessage(PushMessage message) {
+    public void setMessage(final PushMessage message) {
 	this.message = message;
     }
 
@@ -44,7 +44,7 @@ public class PushJob implements Serializable {
 	return endpoint;
     }
 
-    public void setEndpoint(PushEndpoint endpoint) {
+    public void setEndpoint(final PushEndpoint endpoint) {
 	this.endpoint = endpoint;
     }
 
@@ -52,7 +52,7 @@ public class PushJob implements Serializable {
 	return factoryProperties;
     }
 
-    public void setFactoryProperties(Properties factoryProperties) {
+    public void setFactoryProperties(final Properties factoryProperties) {
 	this.factoryProperties = factoryProperties;
     }
 }

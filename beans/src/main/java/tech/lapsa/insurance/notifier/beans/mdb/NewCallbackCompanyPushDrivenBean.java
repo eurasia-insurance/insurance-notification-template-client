@@ -43,7 +43,7 @@ public class NewCallbackCompanyPushDrivenBean extends APushRequestNotificationDr
     }
 
     @Override
-    protected Locale locale(Request request) {
+    protected Locale locale(final Request request) {
 	return DEFAULT_LANGUAGE.getLocale();
     }
 

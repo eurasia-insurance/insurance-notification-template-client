@@ -37,20 +37,20 @@ public abstract class AEmailRequestNotificationDrivenBean<T extends Request> ext
     private Properties configurationProperties;
 
     @Override
-    protected void sendWithModel(TextModel textModel, T request) {
+    protected void sendWithModel(final TextModel textModel, final T request) {
 	try {
-	    Locale locale = locale(request);
+	    final Locale locale = locale(request);
 
-	    MailMessageBuilder template = mailFactory()
+	    final MailMessageBuilder template = mailFactory()
 		    .newMailBuilder();
 
-	    String subject = TextFactory.newTextTemplateBuilder() //
+	    final String subject = TextFactory.newTextTemplateBuilder() //
 		    .buildFromPattern(getSubjectTemplate().regular(locale)) //
 		    .merge(textModel) //
 		    .asString();
 	    template.withSubject(subject);
 
-	    String body = TextFactory.newTextTemplateBuilder() //
+	    final String body = TextFactory.newTextTemplateBuilder() //
 		    .buildFromInputStream(getBodyTemplate().getResourceAsStream(locale)) //
 		    .merge(textModel) //
 		    .asString();
@@ -60,7 +60,7 @@ public abstract class AEmailRequestNotificationDrivenBean<T extends Request> ext
 		    .build()
 		    .send();
 
-	} catch (MailException e) {
+	} catch (final MailException e) {
 	    throw new RuntimeException("Failed to create or send email", e);
 	}
     }

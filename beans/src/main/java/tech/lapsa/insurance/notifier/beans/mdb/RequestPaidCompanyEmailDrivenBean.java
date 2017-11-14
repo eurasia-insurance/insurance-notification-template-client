@@ -37,15 +37,16 @@ public class RequestPaidCompanyEmailDrivenBean extends AEmailRequestNotification
     }
 
     @Override
-    protected MailMessageBuilder recipients(MailMessageBuilder builder, Request request) throws MailBuilderException {
-	User a = request.getAcceptedBy();
+    protected MailMessageBuilder recipients(final MailMessageBuilder builder, final Request request)
+	    throws MailBuilderException {
+	final User a = request.getAcceptedBy();
 	if (a != null && MyStrings.nonEmpty(a.getEmail()))
 	    return builder.withTORecipient(a.getEmail(), a.getName());
 	return builder.withDefaultRecipient();
     }
 
     @Override
-    protected Locale locale(Request request) {
+    protected Locale locale(final Request request) {
 	return LocalizationLanguage.RUSSIAN.getLocale();
     }
 

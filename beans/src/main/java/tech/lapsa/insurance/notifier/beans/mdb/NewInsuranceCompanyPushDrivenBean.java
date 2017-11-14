@@ -43,7 +43,7 @@ public class NewInsuranceCompanyPushDrivenBean extends APushRequestNotificationD
     }
 
     @Override
-    protected Locale locale(Request request) {
+    protected Locale locale(final Request request) {
 	return DEFAULT_LANGUAGE.getLocale();
     }
 

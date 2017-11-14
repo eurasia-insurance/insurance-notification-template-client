@@ -35,12 +35,13 @@ public class NewPolicyCompanyEmailDrivenBean extends AEmailRequestNotificationDr
     }
 
     @Override
-    protected MailMessageBuilder recipients(MailMessageBuilder builder, Request request) throws MailBuilderException {
+    protected MailMessageBuilder recipients(final MailMessageBuilder builder, final Request request)
+	    throws MailBuilderException {
 	return builder.withDefaultRecipient();
     }
 
     @Override
-    protected Locale locale(Request request) {
+    protected Locale locale(final Request request) {
 	return LocalizationLanguage.RUSSIAN.getLocale();
     }
 

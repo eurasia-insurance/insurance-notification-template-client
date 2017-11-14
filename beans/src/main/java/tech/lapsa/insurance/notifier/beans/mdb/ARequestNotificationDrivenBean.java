@@ -31,17 +31,17 @@ public abstract class ARequestNotificationDrivenBean<T extends Request> extends 
     private Properties configurationProperties;
 
     @Override
-    protected void accept(T request, Properties properties) {
+    protected void accept(final T request, final Properties properties) {
 	MyObjects.requireNonNull(request, "request");
 
-	TextModelBuilder builder = TextFactory.newModelBuilder() //
+	final TextModelBuilder builder = TextFactory.newModelBuilder() //
 		.withLocale(locale(request)) //
 		.bind("instanceVerb", configurationProperties.getProperty(PROPERTY_INSTANCE_VERB, "")) //
 		.bind("request", request) //
 		.bind("requester", request.getRequester());
 
 	if (request instanceof InsuranceRequest) {
-	    InsuranceRequest insuranceRequest = (InsuranceRequest) request;
+	    final InsuranceRequest insuranceRequest = (InsuranceRequest) request;
 	    builder.bind("insuranceRequest", insuranceRequest) //
 		    .bind("product", insuranceRequest.getProduct()) //
 		    .bind("obtaining", insuranceRequest.getObtaining()) //
@@ -49,23 +49,23 @@ public abstract class ARequestNotificationDrivenBean<T extends Request> extends 
 	}
 
 	if (request instanceof PolicyRequest) {
-	    PolicyRequest policyRequest = (PolicyRequest) request;
+	    final PolicyRequest policyRequest = (PolicyRequest) request;
 	    builder.bind("policyRequest", policyRequest) //
 		    .bind("policy", policyRequest.getPolicy());
 	}
 
 	if (request instanceof CascoRequest) {
-	    CascoRequest cascoRequest = (CascoRequest) request;
+	    final CascoRequest cascoRequest = (CascoRequest) request;
 	    builder.bind("cascoRequest", cascoRequest) //
 		    .bind("casco", cascoRequest.getCasco());
 	}
 
 	if (request instanceof CallbackRequest) {
-	    CallbackRequest callbackRequest = (CallbackRequest) request;
+	    final CallbackRequest callbackRequest = (CallbackRequest) request;
 	    builder.bind("callbackRequest", callbackRequest);
 	}
 
-	TextModel textModel = builder.build();
+	final TextModel textModel = builder.build();
 	sendWithModel(textModel, request);
     }
 

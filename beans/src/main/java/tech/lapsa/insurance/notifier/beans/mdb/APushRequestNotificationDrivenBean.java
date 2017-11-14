@@ -83,20 +83,20 @@ public abstract class APushRequestNotificationDrivenBean<T extends Request> exte
     public void init() {
 
 	{
-	    String pushChannelId = configurationProperties.getProperty(getChannelIdConfigurationProperty(), null);
+	    final String pushChannelId = configurationProperties.getProperty(getChannelIdConfigurationProperty(), null);
 	    try {
 		pchannel = pushChannelDAO.getById(pushChannelId);
-	    } catch (NotFound e) {
+	    } catch (final NotFound e) {
 		throw new EJBException(String.format("Failed to initialize CDI-bean %1$s. Invalid channelId %2$s",
 			this.getClass().getName(), pushChannelId), e);
 	    }
 	}
 
 	{
-	    String pushUrl = configurationProperties.getProperty(getPushURLConfigurationProperty(), null);
+	    final String pushUrl = configurationProperties.getProperty(getPushURLConfigurationProperty(), null);
 	    try {
 		url = new URL(pushUrl);
-	    } catch (MalformedURLException e1) {
+	    } catch (final MalformedURLException e1) {
 		logger.WARN.log(e1, "Push channel id %1$s is not a valid URL resource", pushUrl);
 	    }
 	}
@@ -110,37 +110,37 @@ public abstract class APushRequestNotificationDrivenBean<T extends Request> exte
     }
 
     @Override
-    protected void sendWithModel(TextModel textModel, T request) {
+    protected void sendWithModel(final TextModel textModel, final T request) {
 
-	Locale locale = locale(request);
+	final Locale locale = locale(request);
 
-	String title = TextFactory.newTextTemplateBuilder() //
+	final String title = TextFactory.newTextTemplateBuilder() //
 		.buildFromPattern(getTitleMessageBudnle().regular(locale)) //
 		.merge(textModel) //
 		.asString();
 
-	String body = TextFactory.newTextTemplateBuilder() //
+	final String body = TextFactory.newTextTemplateBuilder() //
 		.buildFromPattern(getBodyMessageBudnle().regular(locale)) //
 		.merge(textModel) //
 		.asString();
 
-	PushMessage message = new PushMessage(title, body, url);
+	final PushMessage message = new PushMessage(title, body, url);
 
 	try (Connection connection = connectionFactory.createConnection()) {
-	    Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-	    MessageProducer producer = session.createProducer(pushJobDestination);
+	    final Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+	    final MessageProducer producer = session.createProducer(pushJobDestination);
 
-	    List<PushSubscriber> subscribers = pushSubscriberDAO.findByChannel(pchannel);
-	    for (PushSubscriber psubscr : subscribers) {
-		PushEndpoint ep = factory.createEndpoint(psubscr.getEndpoint(), psubscr.getUserPublicKey(),
+	    final List<PushSubscriber> subscribers = pushSubscriberDAO.findByChannel(pchannel);
+	    for (final PushSubscriber psubscr : subscribers) {
+		final PushEndpoint ep = factory.createEndpoint(psubscr.getEndpoint(), psubscr.getUserPublicKey(),
 			psubscr.getUserAuth());
-		PushJob job = new PushJob(message, ep, factoryProperties);
-		Message msg = session.createObjectMessage(job);
+		final PushJob job = new PushJob(message, ep, factoryProperties);
+		final Message msg = session.createObjectMessage(job);
 		producer.send(msg);
 	    }
-	} catch (PushFactoryException e) {
+	} catch (final PushFactoryException e) {
 	    throw new RuntimeException(String.format("Something goes wrong during the push process"), e);
-	} catch (JMSException e) {
+	} catch (final JMSException e) {
 	    throw new RuntimeException("Failed assign a push job");
 	}
     }
