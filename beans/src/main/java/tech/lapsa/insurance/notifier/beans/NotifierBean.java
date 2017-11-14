@@ -122,7 +122,7 @@ public class NotifierBean implements Notifier {
 		    default:
 		    }
 		case PUSH:
-		    // TODO PUSH DISABLED temporary
+		    // TODO DEBUG : Push disabled temporary. Need to debug
 		    // switch (recipientType) {
 		    // case COMPANY:
 		    // if (request instanceof InsuranceRequest)

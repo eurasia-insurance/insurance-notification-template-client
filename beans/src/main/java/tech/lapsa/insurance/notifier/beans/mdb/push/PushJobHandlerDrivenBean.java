@@ -15,7 +15,7 @@ import com.lapsa.pushapi.services.PushSender;
 import tech.lapsa.java.commons.logging.MyLogger;
 import tech.lapsa.javax.jms.ObjectConsumerListener;
 
-//TODO PUSH DISABLED temporary
+//TODO DEBUG : Push disabled temporary. Need to debug
 //@MessageDriven(mappedName = JNDI_JMS_DEST_PUSH_JOBS)
 public class PushJobHandlerDrivenBean extends ObjectConsumerListener<PushJob> implements MessageListener {
 
