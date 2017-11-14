@@ -21,6 +21,7 @@
 
 	<properties>
 		<!-- BOMS -->
+		<java-commons.version>1.1-SNAPSHOT</java-commons.version>
 		<javax-javaee-bom.version>7.0</javax-javaee-bom.version>
 		<javax-mail.version>2.0</javax-mail.version>
 		<!-- tech -->
@@ -36,6 +37,13 @@
 	<dependencyManagement>
 		<dependencies>
 			<!-- BOMS -->
+			<dependency>
+				<groupId>tech.lapsa.java</groupId>
+				<artifactId>java-commons-root</artifactId>
+				<version>${java-commons.version}</version>
+				<scope>import</scope>
+				<type>pom</type>
+			</dependency>
 			<dependency>
 				<groupId>tech.lapsa.javax</groupId>
 				<artifactId>javax-javaee-bom</artifactId>
