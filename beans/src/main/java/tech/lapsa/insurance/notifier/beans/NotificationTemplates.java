@@ -3,8 +3,8 @@ package tech.lapsa.insurance.notifier.beans;
 import java.io.InputStream;
 import java.util.Locale;
 
+import tech.lapsa.java.commons.io.MyResources;
 import tech.lapsa.java.commons.localization.LocalizedElement;
-import tech.lapsa.java.commons.resources.Resources;
 
 public enum NotificationTemplates implements LocalizedElement {
     NEW_CASCO_COMPANY_EMAIL_TEMPLATE, //
@@ -16,6 +16,6 @@ public enum NotificationTemplates implements LocalizedElement {
     ;
 
     public InputStream getResourceAsStream(Locale locale) {
-	return Resources.getAsStream(this.getClass(), regular(locale));
+	return MyResources.getAsStream(this.getClass(), regular(locale));
     }
 }
