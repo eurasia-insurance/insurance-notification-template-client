@@ -31,7 +31,7 @@ public abstract class ARequestNotificationDrivenBean<T extends Request> extends 
     private Properties configurationProperties;
 
     @Override
-    protected void accept(T request) {
+    protected void accept(T request, Properties properties) {
 	MyObjects.requireNonNull(request, "request");
 
 	TextModelBuilder builder = TextFactory.newModelBuilder() //
