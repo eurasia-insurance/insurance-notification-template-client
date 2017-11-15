@@ -27,11 +27,11 @@
 		<!-- tech -->
 		<javax-jms-commons.version>1.1-SNAPSHOT</javax-jms-commons.version>
 		<lapsa-text.version>1.1-SNAPSHOT</lapsa-text.version>
-		<pushapi-dao.version>1.0</pushapi-dao.version>
+		<pushapi-dao.version>1.1-SNAPSHOT</pushapi-dao.version>
 		<!-- oldies -->
 		<insurance-lib.version>2.4-SNAPSHOT</insurance-lib.version>
-		<pushapi-lib.version>1.1</pushapi-lib.version>
-		<pushapi-sender-impl-default.version>1.1</pushapi-sender-impl-default.version>
+		<pushapi-lib.version>1.2-SNAPSHOT</pushapi-lib.version>
+		<pushapi-sender-impl-default.version>1.2-SNAPSHOT</pushapi-sender-impl-default.version>
 	</properties>
 
 	<dependencyManagement>
