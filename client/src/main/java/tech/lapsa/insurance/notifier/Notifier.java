@@ -1,5 +1,7 @@
 package tech.lapsa.insurance.notifier;
 
+import java.util.function.Consumer;
+
 import javax.ejb.Local;
 
 import com.lapsa.insurance.domain.Request;
@@ -34,6 +36,8 @@ public interface Notifier {
 	Notification build();
 
 	interface Notification {
+
+	    Notification onSuccess(Consumer<Notification> onSuccess);
 
 	    void send();
 

@@ -2,6 +2,8 @@ package tech.lapsa.insurance.notifier.beans;
 
 import static tech.lapsa.insurance.notifier.beans.Constants.*;
 
+import java.util.function.Consumer;
+
 import javax.annotation.Resource;
 import javax.ejb.Stateless;
 import javax.jms.Connection;
@@ -165,10 +167,17 @@ public class NotifierBean implements Notifier {
 	    private final Destination destination;
 	    private final Request request;
 	    private boolean sent = false;
+	    private Consumer<Notification> onSuccess;
 
 	    private NotificationImpl(final Destination destination) {
 		this.destination = MyObjects.requireNonNull(destination, "destination");
 		request = MyObjects.requireNonNull(NotificationBuilderImpl.this.request, "request");
+	    }
+
+	    @Override
+	    public Notification onSuccess(Consumer<Notification> onSuccess) {
+		this.onSuccess = MyObjects.requireNonNull(onSuccess, "onSuccess");
+		return this;
 	    }
 
 	    @Override
@@ -181,6 +190,8 @@ public class NotifierBean implements Notifier {
 		    final Message msg = session.createObjectMessage(request);
 		    producer.send(msg);
 		    sent = true;
+		    if (MyObjects.nonNull(onSuccess))
+			onSuccess.accept(this);
 		} catch (final JMSException e) {
 		    throw new RuntimeException("Failed to assign a notification task", e);
 		}
