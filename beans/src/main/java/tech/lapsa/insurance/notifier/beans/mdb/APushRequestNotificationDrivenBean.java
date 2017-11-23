@@ -12,13 +12,8 @@ import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.ejb.EJBException;
 import javax.inject.Inject;
-import javax.jms.Connection;
-import javax.jms.ConnectionFactory;
 import javax.jms.Destination;
 import javax.jms.JMSException;
-import javax.jms.Message;
-import javax.jms.MessageProducer;
-import javax.jms.Session;
 
 import com.lapsa.insurance.domain.Request;
 import com.lapsa.pushapi.core.PushChannel;
@@ -32,6 +27,8 @@ import com.lapsa.pushapi.services.PushMessage;
 import tech.lapsa.insurance.notifier.beans.NotificationMessages;
 import tech.lapsa.insurance.notifier.beans.mdb.push.PushJob;
 import tech.lapsa.java.commons.logging.MyLogger;
+import tech.lapsa.javax.jms.MyJMSClient;
+import tech.lapsa.javax.jms.MyJMSClient.MyJMSMultipleConsumer;
 import tech.lapsa.lapsa.text.TextFactory;
 import tech.lapsa.lapsa.text.TextFactory.TextModelBuilder.TextModel;
 import tech.lapsa.patterns.dao.NotFound;
@@ -58,9 +55,6 @@ public abstract class APushRequestNotificationDrivenBean<T extends Request> exte
 
     @Resource(lookup = JNDI_RESOURCE_CONFIGURATION)
     private Properties configurationProperties;
-
-    @Resource(name = JNDI_JMS_CONNECTION_FACTORY)
-    private ConnectionFactory connectionFactory;
 
     @Resource(name = JNDI_JMS_DEST_PUSH_JOBS)
     private Destination pushJobDestination;
@@ -109,6 +103,9 @@ public abstract class APushRequestNotificationDrivenBean<T extends Request> exte
 	}
     }
 
+    @Inject
+    private MyJMSClient jmsClient;
+
     @Override
     protected void sendWithModel(final TextModel textModel, final T request) {
 
@@ -126,17 +123,13 @@ public abstract class APushRequestNotificationDrivenBean<T extends Request> exte
 
 	final PushMessage message = new PushMessage(title, body, url);
 
-	try (Connection connection = connectionFactory.createConnection()) {
-	    final Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-	    final MessageProducer producer = session.createProducer(pushJobDestination);
-
+	try (MyJMSMultipleConsumer<PushJob> consumer = jmsClient.createMultipleConsumer(pushJobDestination)) {
 	    final List<PushSubscriber> subscribers = pushSubscriberDAO.findByChannel(pchannel);
 	    for (final PushSubscriber psubscr : subscribers) {
 		final PushEndpoint ep = factory.createEndpoint(psubscr.getEndpoint(), psubscr.getUserPublicKey(),
 			psubscr.getUserAuth());
 		final PushJob job = new PushJob(message, ep, factoryProperties);
-		final Message msg = session.createObjectMessage(job);
-		producer.send(msg);
+		consumer.acceptNoWait(job);
 	    }
 	} catch (final PushFactoryException e) {
 	    throw new RuntimeException(String.format("Something goes wrong during the push process"), e);
@@ -144,5 +137,4 @@ public abstract class APushRequestNotificationDrivenBean<T extends Request> exte
 	    throw new RuntimeException("Failed assign a push job");
 	}
     }
-
 }
