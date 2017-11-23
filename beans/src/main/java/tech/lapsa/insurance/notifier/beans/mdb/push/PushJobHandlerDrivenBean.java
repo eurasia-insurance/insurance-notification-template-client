@@ -4,8 +4,6 @@ import java.time.Duration;
 import java.time.Instant;
 import java.util.Properties;
 
-import javax.jms.MessageListener;
-
 import com.lapsa.pushapi.services.PushEndpointNotValid;
 import com.lapsa.pushapi.services.PushFactoryBuilderSPI;
 import com.lapsa.pushapi.services.PushFactoryException;
@@ -17,7 +15,7 @@ import tech.lapsa.javax.jms.ObjectConsumerDrivenBean;
 
 //TODO DEBUG : Push disabled temporary. Need to debug
 //@MessageDriven(mappedName = JNDI_JMS_DEST_PUSH_JOBS)
-public class PushJobHandlerDrivenBean extends ObjectConsumerDrivenBean<PushJob> implements MessageListener {
+public class PushJobHandlerDrivenBean extends ObjectConsumerDrivenBean<PushJob> {
 
     protected PushJobHandlerDrivenBean() {
 	super(PushJob.class);
