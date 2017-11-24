@@ -6,13 +6,8 @@ import java.util.function.Consumer;
 
 import javax.annotation.Resource;
 import javax.ejb.Stateless;
-import javax.jms.Connection;
-import javax.jms.ConnectionFactory;
+import javax.inject.Inject;
 import javax.jms.Destination;
-import javax.jms.JMSException;
-import javax.jms.Message;
-import javax.jms.MessageProducer;
-import javax.jms.Session;
 
 import com.lapsa.insurance.domain.Request;
 import com.lapsa.insurance.domain.casco.CascoRequest;
@@ -23,12 +18,13 @@ import tech.lapsa.insurance.notifier.NotificationRecipientType;
 import tech.lapsa.insurance.notifier.NotificationRequestStage;
 import tech.lapsa.insurance.notifier.Notifier;
 import tech.lapsa.java.commons.function.MyObjects;
+import tech.lapsa.javax.jms.JmsClientFactory;
 
 @Stateless
 public class NotifierBean implements Notifier {
 
-    @Resource(name = JNDI_JMS_CONNECTION_FACTORY)
-    private ConnectionFactory connectionFactory;
+    @Inject
+    private JmsClientFactory jmsFactory;
 
     @Resource(name = JNDI_JMS_DEST_NEW_POLICY_COMPANY_EMAIL)
     private Destination newPolicyCompanyEmail;
@@ -184,15 +180,12 @@ public class NotifierBean implements Notifier {
 	    public void send() {
 		if (sent)
 		    throw new IllegalStateException("Already sent");
-		try (Connection connection = connectionFactory.createConnection()) {
-		    final Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-		    final MessageProducer producer = session.createProducer(destination);
-		    final Message msg = session.createObjectMessage(request);
-		    producer.send(msg);
+		try {
+		    jmsFactory.createSender(destination).send(request);
 		    sent = true;
 		    if (MyObjects.nonNull(onSuccess))
 			onSuccess.accept(this);
-		} catch (final JMSException e) {
+		} catch (final RuntimeException e) {
 		    throw new RuntimeException("Failed to assign a notification task", e);
 		}
 	    }
