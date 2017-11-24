@@ -27,8 +27,8 @@ import com.lapsa.pushapi.services.PushMessage;
 import tech.lapsa.insurance.notifier.beans.NotificationMessages;
 import tech.lapsa.insurance.notifier.beans.mdb.push.PushJob;
 import tech.lapsa.java.commons.logging.MyLogger;
-import tech.lapsa.javax.jms.MyJMSClient;
-import tech.lapsa.javax.jms.MyJMSClient.MyJMSMultipleConsumer;
+import tech.lapsa.javax.jms.JmsClient;
+import tech.lapsa.javax.jms.JmsClient.JmsSender;
 import tech.lapsa.lapsa.text.TextFactory;
 import tech.lapsa.lapsa.text.TextFactory.TextModelBuilder.TextModel;
 import tech.lapsa.patterns.dao.NotFound;
@@ -104,7 +104,7 @@ public abstract class APushRequestNotificationDrivenBean<T extends Request> exte
     }
 
     @Inject
-    private MyJMSClient jmsClient;
+    private JmsClient jmsClient;
 
     @Override
     protected void sendWithModel(final TextModel textModel, final T request) {
@@ -123,13 +123,13 @@ public abstract class APushRequestNotificationDrivenBean<T extends Request> exte
 
 	final PushMessage message = new PushMessage(title, body, url);
 
-	try (MyJMSMultipleConsumer<PushJob> consumer = jmsClient.createMultipleConsumer(pushJobDestination)) {
+	try (JmsSender<PushJob> sender = jmsClient.createSender(pushJobDestination)) {
 	    final List<PushSubscriber> subscribers = pushSubscriberDAO.findByChannel(pchannel);
 	    for (final PushSubscriber psubscr : subscribers) {
 		final PushEndpoint ep = factory.createEndpoint(psubscr.getEndpoint(), psubscr.getUserPublicKey(),
 			psubscr.getUserAuth());
 		final PushJob job = new PushJob(message, ep, factoryProperties);
-		consumer.acceptNoWait(job);
+		sender.send(job);
 	    }
 	} catch (final PushFactoryException e) {
 	    throw new RuntimeException(String.format("Something goes wrong during the push process"), e);

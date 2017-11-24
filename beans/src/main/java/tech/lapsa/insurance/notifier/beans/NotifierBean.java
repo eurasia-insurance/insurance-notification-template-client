@@ -19,14 +19,14 @@ import tech.lapsa.insurance.notifier.NotificationRecipientType;
 import tech.lapsa.insurance.notifier.NotificationRequestStage;
 import tech.lapsa.insurance.notifier.Notifier;
 import tech.lapsa.java.commons.function.MyObjects;
-import tech.lapsa.javax.jms.MyJMSClient;
-import tech.lapsa.javax.jms.MyJMSClient.MyJMSConsumer;
+import tech.lapsa.javax.jms.JmsClient;
+import tech.lapsa.javax.jms.JmsClient.JmsSender;
 
 @Stateless
 public class NotifierBean implements Notifier {
 
     @Inject
-    private MyJMSClient jmsClient;
+    private JmsClient jmsClient;
 
     @Resource(name = JNDI_JMS_DEST_NEW_POLICY_COMPANY_EMAIL)
     private Destination newPolicyCompanyEmail;
@@ -183,8 +183,8 @@ public class NotifierBean implements Notifier {
 		if (sent)
 		    throw new IllegalStateException("Already sent");
 		try {
-		    MyJMSConsumer<Request> consumer = jmsClient.createConsumer(destination);
-		    consumer.accept(request);
+		    final JmsSender<Request> sender = jmsClient.createSender(destination);
+		    sender.send(request);
 		    sent = true;
 		    if (MyObjects.nonNull(onSuccess))
 			onSuccess.accept(this);

@@ -10,20 +10,15 @@ import com.lapsa.pushapi.services.PushFactoryException;
 import com.lapsa.pushapi.services.PushSendError;
 import com.lapsa.pushapi.services.PushSender;
 
-import tech.lapsa.java.commons.logging.MyLogger;
-import tech.lapsa.javax.jms.ObjectConsumerDrivenBean;
+import tech.lapsa.javax.jms.ConsumerServiceDrivenBean;
 
 //TODO DEBUG : Push disabled temporary. Need to debug
 //@MessageDriven(mappedName = JNDI_JMS_DEST_PUSH_JOBS)
-public class PushJobHandlerDrivenBean extends ObjectConsumerDrivenBean<PushJob> {
+public class PushJobHandlerDrivenBean extends ConsumerServiceDrivenBean<PushJob> {
 
     protected PushJobHandlerDrivenBean() {
 	super(PushJob.class);
     }
-
-    private static final MyLogger logger = MyLogger.newBuilder() //
-	    .withNameOf(PushJobHandlerDrivenBean.class) //
-	    .build();
 
     @Override
     protected void accept(final PushJob job, final Properties properties) {
@@ -36,27 +31,27 @@ public class PushJobHandlerDrivenBean extends ObjectConsumerDrivenBean<PushJob> 
 		    .builder() //
 		    .buildFactory(job.getFactoryProperties()).createSender();
 	} catch (final PushFactoryException e) {
-	    logger.WARNING.log(e, "ERROR SENDER INITIALIZATION");
+	    serviceLogger.WARNING.log(e, "ERROR SENDER INITIALIZATION");
 	}
 
 	if (sender != null)
 	    try {
-		logger.INFO.log("SENDING %1$s...", job);
+		serviceLogger.INFO.log("SENDING %1$s...", job);
 		sender.send(job.getMessage(), job.getEndpoint());
 		final Duration d = Duration.between(b, Instant.now());
-		logger.INFO.log("SUCCESSFULY SENT IN %2$.3f SEC %1$s", //
+		serviceLogger.INFO.log("SUCCESSFULY SENT IN %2$.3f SEC %1$s", //
 			job, // 1
 			(double) d.toNanos() / 1000000000// 2
 		);
 	    } catch (final PushEndpointNotValid e) {
 		final Duration d = Duration.between(b, Instant.now());
-		logger.INFO.log("ENDPOINT IS NOT VALID %1$s (%2$.3f seconds)", //
+		serviceLogger.INFO.log("ENDPOINT IS NOT VALID %1$s (%2$.3f seconds)", //
 			job.getEndpoint(), // 1
 			(double) d.toNanos() / 1000000000// 2
 		);
 	    } catch (final PushSendError e) {
 		final Duration d = Duration.between(b, Instant.now());
-		logger.WARNING.log(e, "SEND ERROR %1$s (%2$.3f seconds)", //
+		serviceLogger.WARNING.log(e, "SEND ERROR %1$s (%2$.3f seconds)", //
 			job, // 1
 			(double) d.toNanos() / 1000000000// 2
 		);
