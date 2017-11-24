@@ -8,7 +8,6 @@ import javax.annotation.Resource;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.jms.Destination;
-import javax.jms.JMSException;
 
 import com.lapsa.insurance.domain.Request;
 import com.lapsa.insurance.domain.casco.CascoRequest;
@@ -19,14 +18,13 @@ import tech.lapsa.insurance.notifier.NotificationRecipientType;
 import tech.lapsa.insurance.notifier.NotificationRequestStage;
 import tech.lapsa.insurance.notifier.Notifier;
 import tech.lapsa.java.commons.function.MyObjects;
-import tech.lapsa.javax.jms.JmsClient;
-import tech.lapsa.javax.jms.JmsClient.JmsSender;
+import tech.lapsa.javax.jms.JmsClientFactory;
 
 @Stateless
 public class NotifierBean implements Notifier {
 
     @Inject
-    private JmsClient jmsClient;
+    private JmsClientFactory jmsFactory;
 
     @Resource(name = JNDI_JMS_DEST_NEW_POLICY_COMPANY_EMAIL)
     private Destination newPolicyCompanyEmail;
@@ -183,12 +181,11 @@ public class NotifierBean implements Notifier {
 		if (sent)
 		    throw new IllegalStateException("Already sent");
 		try {
-		    final JmsSender<Request> sender = jmsClient.createSender(destination);
-		    sender.send(request);
+		    jmsFactory.createSender(destination).send(request);
 		    sent = true;
 		    if (MyObjects.nonNull(onSuccess))
 			onSuccess.accept(this);
-		} catch (final JMSException | RuntimeException e) {
+		} catch (final RuntimeException e) {
 		    throw new RuntimeException("Failed to assign a notification task", e);
 		}
 	    }
