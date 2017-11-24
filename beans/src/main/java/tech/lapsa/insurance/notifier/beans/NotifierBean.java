@@ -27,7 +27,7 @@ public class NotifierBean implements Notifier {
     @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
     public void send(final Notification notification) {
 	final Destination destination = resolveDestination(notification);
-	jmsFactory.createSender(destination).send(notification.getEntity());
+	jmsFactory.createSender(destination).send(notification.getEntity(), notification.getProperties());
     }
 
     @Resource(name = JNDI_JMS_DEST_NEW_POLICY_COMPANY_EMAIL)
