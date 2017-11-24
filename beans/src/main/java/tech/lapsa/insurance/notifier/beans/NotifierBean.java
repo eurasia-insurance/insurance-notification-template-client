@@ -27,7 +27,7 @@ public class NotifierBean implements Notifier {
     @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
     public void send(final Notification notification) {
 	final Destination destination = resolveDestination(notification);
-	jmsFactory.createSender(destination).send(notification.getRequest());
+	jmsFactory.createSender(destination).send(notification.getEntity());
     }
 
     @Resource(name = JNDI_JMS_DEST_NEW_POLICY_COMPANY_EMAIL)
@@ -52,7 +52,7 @@ public class NotifierBean implements Notifier {
     private Destination requestPaidCompanyEmail;
 
     private Destination resolveDestination(Notification notification) {
-	final Request request = notification.getRequest();
+	final Request request = notification.getEntity();
 	switch (notification.getEvent()) {
 	case NEW_REQUEST:
 	    switch (notification.getChannel()) {

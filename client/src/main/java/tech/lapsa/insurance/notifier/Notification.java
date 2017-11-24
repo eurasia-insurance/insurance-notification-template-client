@@ -19,7 +19,7 @@ public final class Notification implements Serializable {
 	private NotificationChannel channel;
 	private NotificationRecipientType recipientType;
 	private NotificationRequestStage event;
-	private Request request;
+	private Request entity;
 
 	private NotificationBuilder() {
 	}
@@ -39,28 +39,27 @@ public final class Notification implements Serializable {
 	    return this;
 	}
 
-	public NotificationBuilder forEntity(final Request request) {
-	    this.request = MyObjects.requireNonNull(request, "request");
+	public NotificationBuilder forEntity(final Request entity) {
+	    this.entity = MyObjects.requireNonNull(entity, "entity");
 	    return this;
 	}
 
 	public Notification build() {
-	    MyObjects.requireNonNull(request, "request");
-	    return new Notification(channel, recipientType, event, request);
+	    return new Notification(channel, recipientType, event, entity);
 	}
     }
 
     private final NotificationChannel channel;
     private final NotificationRecipientType recipientType;
     private final NotificationRequestStage event;
-    private final Request request;
+    private final Request entity;
 
     private Notification(NotificationChannel channel, NotificationRecipientType recipientType,
-	    NotificationRequestStage event, Request request) {
+	    NotificationRequestStage event, Request entity) {
 	this.channel = MyObjects.requireNonNull(channel, "channel");
 	this.recipientType = MyObjects.requireNonNull(recipientType, "recipientType");
 	this.event = MyObjects.requireNonNull(event, "event");
-	this.request = MyObjects.requireNonNull(request, "request");
+	this.entity = MyObjects.requireNonNull(entity, "entity");
     }
 
     public NotificationChannel getChannel() {
@@ -75,7 +74,7 @@ public final class Notification implements Serializable {
 	return event;
     }
 
-    public Request getRequest() {
-	return request;
+    public Request getEntity() {
+	return entity;
     }
 }
