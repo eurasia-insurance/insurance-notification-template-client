@@ -11,9 +11,11 @@ import com.lapsa.pushapi.services.PushSendError;
 import com.lapsa.pushapi.services.PushSender;
 
 import tech.lapsa.javax.jms.ConsumerServiceDrivenBean;
+import tech.lapsa.javax.jms.JmsSkipValidation;
 
 //TODO DEBUG : Push disabled temporary. Need to debug
 //@MessageDriven(mappedName = JNDI_JMS_DEST_PUSH_JOBS)
+@JmsSkipValidation
 public class PushJobHandlerDrivenBean extends ConsumerServiceDrivenBean<PushJob> {
 
     protected PushJobHandlerDrivenBean() {
@@ -21,7 +23,7 @@ public class PushJobHandlerDrivenBean extends ConsumerServiceDrivenBean<PushJob>
     }
 
     @Override
-    protected void accept(final PushJob job, final Properties properties) {
+    public void receiving(final PushJob job, final Properties properties) {
 
 	final Instant b = Instant.now();
 

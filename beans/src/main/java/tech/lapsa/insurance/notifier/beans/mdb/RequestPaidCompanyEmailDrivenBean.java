@@ -21,7 +21,7 @@ import tech.lapsa.javax.mail.MailFactory;
 import tech.lapsa.javax.mail.MailMessageBuilder;
 
 @MessageDriven(mappedName = JNDI_JMS_DEST_REQUEST_PAID_COMPANY_EMAIL)
-public class RequestPaidCompanyEmailDrivenBean extends AEmailRequestNotificationDrivenBean<InsuranceRequest> {
+public class RequestPaidCompanyEmailDrivenBean extends EmailRequestNotificationBase<InsuranceRequest> {
 
     @Inject
     @QRecipientCompany

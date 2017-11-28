@@ -18,9 +18,9 @@ import tech.lapsa.javax.mail.MailMessageBuilder;
 import tech.lapsa.lapsa.text.TextFactory;
 import tech.lapsa.lapsa.text.TextFactory.TextModelBuilder.TextModel;
 
-public abstract class AEmailRequestNotificationDrivenBean<T extends Request> extends ARequestNotificationDrivenBean<T> {
+public abstract class EmailRequestNotificationBase<T extends Request> extends RequestNotificationBase<T> {
 
-    AEmailRequestNotificationDrivenBean(final Class<T> cls) {
+    EmailRequestNotificationBase(final Class<T> cls) {
 	super(cls);
     }
 

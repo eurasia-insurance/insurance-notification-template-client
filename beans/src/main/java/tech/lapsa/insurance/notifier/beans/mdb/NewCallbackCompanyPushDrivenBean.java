@@ -14,7 +14,7 @@ import tech.lapsa.insurance.notifier.beans.Constants;
 import tech.lapsa.insurance.notifier.beans.NotificationMessages;
 
 @MessageDriven(mappedName = JNDI_JMS_DEST_NEW_CALLBACK_COMPANY_PUSH)
-public class NewCallbackCompanyPushDrivenBean extends APushRequestNotificationDrivenBean<CallbackRequest> {
+public class NewCallbackCompanyPushDrivenBean extends PushRequestNotificationBase<CallbackRequest> {
 
     public NewCallbackCompanyPushDrivenBean() {
 	super(CallbackRequest.class);

@@ -32,9 +32,9 @@ import tech.lapsa.patterns.dao.NotFound;
 import tech.lapsa.push.dao.PushChannelDAO;
 import tech.lapsa.push.dao.PushSubscriberDAO;
 
-public abstract class APushRequestNotificationDrivenBean<T extends Request> extends ARequestNotificationDrivenBean<T> {
+public abstract class PushRequestNotificationBase<T extends Request> extends RequestNotificationBase<T> {
 
-    APushRequestNotificationDrivenBean(final Class<T> objectClazz) {
+    PushRequestNotificationBase(final Class<T> objectClazz) {
 	super(objectClazz);
     }
 
