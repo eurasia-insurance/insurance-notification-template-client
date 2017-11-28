@@ -21,9 +21,9 @@ import tech.lapsa.lapsa.text.TextFactory.TextModelBuilder;
 import tech.lapsa.lapsa.text.TextFactory.TextModelBuilder.TextModel;
 
 @JmsSkipValidation
-public abstract class ARequestNotificationDrivenBean<T extends Request> extends ConsumerServiceDrivenBean<T> {
+public abstract class RequestNotificationBase<T extends Request> extends ConsumerServiceDrivenBean<T> {
 
-    ARequestNotificationDrivenBean(final Class<T> objectClazz) {
+    RequestNotificationBase(final Class<T> objectClazz) {
 	super(objectClazz);
     }
 

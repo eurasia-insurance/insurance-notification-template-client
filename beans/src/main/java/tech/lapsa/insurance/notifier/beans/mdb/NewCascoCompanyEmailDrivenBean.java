@@ -19,7 +19,7 @@ import tech.lapsa.javax.mail.MailFactory;
 import tech.lapsa.javax.mail.MailMessageBuilder;
 
 @MessageDriven(mappedName = JNDI_JMS_DEST_NEW_CASCO_COMPANY_EMAIL)
-public class NewCascoCompanyEmailDrivenBean extends AEmailRequestNotificationDrivenBean<CascoRequest> {
+public class NewCascoCompanyEmailDrivenBean extends EmailRequestNotificationBase<CascoRequest> {
 
     @Inject
     @QRecipientCompany

@@ -14,7 +14,7 @@ import tech.lapsa.insurance.notifier.beans.Constants;
 import tech.lapsa.insurance.notifier.beans.NotificationMessages;
 
 @MessageDriven(mappedName = JNDI_JMS_DEST_NEW_INSURANCE_COMPANY_PUSH)
-public class NewInsuranceCompanyPushDrivenBean extends APushRequestNotificationDrivenBean<InsuranceRequest> {
+public class NewInsuranceCompanyPushDrivenBean extends PushRequestNotificationBase<InsuranceRequest> {
 
     public NewInsuranceCompanyPushDrivenBean() {
 	super(InsuranceRequest.class);

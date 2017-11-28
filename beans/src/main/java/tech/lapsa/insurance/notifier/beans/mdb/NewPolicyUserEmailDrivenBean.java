@@ -19,7 +19,7 @@ import tech.lapsa.javax.mail.MailFactory;
 import tech.lapsa.javax.mail.MailMessageBuilder;
 
 @MessageDriven(mappedName = JNDI_JMS_DEST_NEW_POLICY_USER_EMAIL)
-public class NewPolicyUserEmailDrivenBean extends AEmailRequestNotificationDrivenBean<PolicyRequest> {
+public class NewPolicyUserEmailDrivenBean extends EmailRequestNotificationBase<PolicyRequest> {
 
     @Inject
     @QRecipientUser
