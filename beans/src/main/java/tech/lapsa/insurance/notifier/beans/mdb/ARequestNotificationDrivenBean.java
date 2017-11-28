@@ -15,10 +15,12 @@ import com.lapsa.insurance.domain.policy.PolicyRequest;
 
 import tech.lapsa.java.commons.function.MyObjects;
 import tech.lapsa.javax.jms.ConsumerServiceDrivenBean;
+import tech.lapsa.javax.jms.JmsSkipValidation;
 import tech.lapsa.lapsa.text.TextFactory;
 import tech.lapsa.lapsa.text.TextFactory.TextModelBuilder;
 import tech.lapsa.lapsa.text.TextFactory.TextModelBuilder.TextModel;
 
+@JmsSkipValidation
 public abstract class ARequestNotificationDrivenBean<T extends Request> extends ConsumerServiceDrivenBean<T> {
 
     ARequestNotificationDrivenBean(final Class<T> objectClazz) {
@@ -31,7 +33,7 @@ public abstract class ARequestNotificationDrivenBean<T extends Request> extends 
     private Properties configurationProperties;
 
     @Override
-    protected void accept(final T request, final Properties properties) {
+    public void receiving(final T request, final Properties properties) {
 	MyObjects.requireNonNull(request, "request");
 
 	final TextModelBuilder builder = TextFactory.newModelBuilder() //
