@@ -16,6 +16,7 @@ import com.lapsa.insurance.domain.policy.PolicyRequest;
 import tech.lapsa.insurance.notifier.Notification;
 import tech.lapsa.insurance.notifier.Notifier;
 import tech.lapsa.javax.jms.JmsClientFactory;
+import tech.lapsa.javax.jms.JmsClientFactory.JmsEventNotificator;
 
 @Stateless
 public class NotifierBean implements Notifier {
@@ -27,7 +28,8 @@ public class NotifierBean implements Notifier {
     @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
     public void send(final Notification notification) {
 	final Destination destination = resolveDestination(notification);
-	jmsFactory.createSender(destination).send(notification.getEntity(), notification.getProperties());
+	final JmsEventNotificator<Request> notificator = jmsFactory.createEventNotificator(destination);
+	notificator.eventNotify(notification.getEntity(), notification.getProperties());
     }
 
     @Resource(name = JNDI_JMS_DEST_NEW_POLICY_COMPANY_EMAIL)
