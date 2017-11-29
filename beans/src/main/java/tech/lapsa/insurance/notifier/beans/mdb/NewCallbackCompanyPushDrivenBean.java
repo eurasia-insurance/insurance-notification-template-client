@@ -1,6 +1,6 @@
 package tech.lapsa.insurance.notifier.beans.mdb;
 
-import static tech.lapsa.insurance.notifier.beans.Constants.*;
+import static tech.lapsa.insurance.notifier.beans.NotifierDestinations.*;
 
 import java.util.Locale;
 

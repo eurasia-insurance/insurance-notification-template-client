@@ -1,6 +1,7 @@
 package tech.lapsa.insurance.notifier.beans.mdb;
 
 import static tech.lapsa.insurance.notifier.beans.Constants.*;
+import static tech.lapsa.insurance.notifier.beans.NotifierDestinations.*;
 
 import java.net.MalformedURLException;
 import java.net.URL;

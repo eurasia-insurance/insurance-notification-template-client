@@ -1,6 +1,6 @@
 package tech.lapsa.insurance.notifier.beans;
 
-import static tech.lapsa.insurance.notifier.beans.Constants.*;
+import static tech.lapsa.insurance.notifier.beans.NotifierDestinations.*;
 
 import javax.annotation.Resource;
 import javax.ejb.Stateless;
