@@ -24,9 +24,8 @@ import com.lapsa.pushapi.services.PushMessage;
 import tech.lapsa.insurance.notifier.beans.NotificationMessages;
 import tech.lapsa.insurance.notifier.beans.mdb.push.PushJob;
 import tech.lapsa.java.commons.logging.MyLogger;
-import tech.lapsa.javax.jms.JmsClientFactory.JmsEventNotificator;
-import tech.lapsa.javax.jms.JmsDestinationMappedName;
-import tech.lapsa.javax.jms.JmsServiceEntityType;
+import tech.lapsa.javax.jms.client.JmsDestination;
+import tech.lapsa.javax.jms.client.JmsEventNotificatorClient;
 import tech.lapsa.lapsa.text.TextFactory;
 import tech.lapsa.lapsa.text.TextFactory.TextModelBuilder.TextModel;
 import tech.lapsa.patterns.dao.NotFound;
@@ -99,9 +98,8 @@ public abstract class PushRequestNotificationBase<T extends Request> extends Req
     }
 
     @Inject
-    @JmsDestinationMappedName(JNDI_JMS_DEST_PUSH_JOBS)
-    @JmsServiceEntityType(PushJob.class)
-    private JmsEventNotificator<PushJob> pushJobNotificator;
+    @JmsDestination(JNDI_JMS_DEST_PUSH_JOBS)
+    private JmsEventNotificatorClient<PushJob> pushJobNotificatorClient;
 
     @Override
     protected void sendWithModel(final TextModel textModel, final T request) {
@@ -124,6 +122,6 @@ public abstract class PushRequestNotificationBase<T extends Request> extends Req
 	subscribers.stream() //
 		.map(x -> factory.createEndpoint(x.getEndpoint(), x.getUserPublicKey(), x.getUserAuth())) //
 		.map(x -> new PushJob(message, x, factoryProperties)) //
-		.forEach(pushJobNotificator::eventNotify);
+		.forEach(pushJobNotificatorClient::eventNotify);
     }
 }

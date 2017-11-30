@@ -10,13 +10,13 @@ import com.lapsa.pushapi.services.PushFactoryException;
 import com.lapsa.pushapi.services.PushSendError;
 import com.lapsa.pushapi.services.PushSender;
 
-import tech.lapsa.javax.jms.ConsumerServiceDrivenBean;
-import tech.lapsa.javax.jms.JmsSkipValidation;
+import tech.lapsa.javax.jms.service.JmsReceiverServiceDrivenBean;
+import tech.lapsa.javax.jms.service.JmsSkipValidation;
 
 //TODO DEBUG : Push disabled temporary. Need to debug
 //@MessageDriven(mappedName = JNDI_JMS_DEST_PUSH_JOBS)
 @JmsSkipValidation
-public class PushJobHandlerDrivenBean extends ConsumerServiceDrivenBean<PushJob> {
+public class PushJobHandlerDrivenBean extends JmsReceiverServiceDrivenBean<PushJob> {
 
     protected PushJobHandlerDrivenBean() {
 	super(PushJob.class);
