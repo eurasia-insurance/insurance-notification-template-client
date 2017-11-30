@@ -1,6 +1,7 @@
 package tech.lapsa.insurance.notifier.beans.mdb;
 
 import static tech.lapsa.insurance.notifier.beans.Constants.*;
+import static tech.lapsa.insurance.notifier.beans.NotifierDestinations.*;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -12,7 +13,6 @@ import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.ejb.EJBException;
 import javax.inject.Inject;
-import javax.jms.Destination;
 
 import com.lapsa.insurance.domain.Request;
 import com.lapsa.pushapi.core.PushChannel;
@@ -24,8 +24,8 @@ import com.lapsa.pushapi.services.PushMessage;
 import tech.lapsa.insurance.notifier.beans.NotificationMessages;
 import tech.lapsa.insurance.notifier.beans.mdb.push.PushJob;
 import tech.lapsa.java.commons.logging.MyLogger;
-import tech.lapsa.javax.jms.JmsClientFactory;
-import tech.lapsa.javax.jms.JmsClientFactory.JmsSender;
+import tech.lapsa.javax.jms.client.JmsDestination;
+import tech.lapsa.javax.jms.client.JmsEventNotificatorClient;
 import tech.lapsa.lapsa.text.TextFactory;
 import tech.lapsa.lapsa.text.TextFactory.TextModelBuilder.TextModel;
 import tech.lapsa.patterns.dao.NotFound;
@@ -52,9 +52,6 @@ public abstract class PushRequestNotificationBase<T extends Request> extends Req
 
     @Resource(lookup = JNDI_RESOURCE_CONFIGURATION)
     private Properties configurationProperties;
-
-    @Resource(name = JNDI_JMS_DEST_PUSH_JOBS)
-    private Destination pushJobDestination;
 
     @Inject
     private PushChannelDAO pushChannelDAO;
@@ -101,7 +98,8 @@ public abstract class PushRequestNotificationBase<T extends Request> extends Req
     }
 
     @Inject
-    private JmsClientFactory jmsFactory;
+    @JmsDestination(JNDI_JMS_DEST_PUSH_JOBS)
+    private JmsEventNotificatorClient<PushJob> pushJobNotificatorClient;
 
     @Override
     protected void sendWithModel(final TextModel textModel, final T request) {
@@ -120,11 +118,10 @@ public abstract class PushRequestNotificationBase<T extends Request> extends Req
 
 	final PushMessage message = new PushMessage(title, body, url);
 
-	JmsSender<PushJob> sender = jmsFactory.createSender(pushJobDestination);
 	final List<PushSubscriber> subscribers = pushSubscriberDAO.findByChannel(pchannel);
 	subscribers.stream() //
 		.map(x -> factory.createEndpoint(x.getEndpoint(), x.getUserPublicKey(), x.getUserAuth())) //
 		.map(x -> new PushJob(message, x, factoryProperties)) //
-		.forEach(sender::send);
+		.forEach(pushJobNotificatorClient::eventNotify);
     }
 }
