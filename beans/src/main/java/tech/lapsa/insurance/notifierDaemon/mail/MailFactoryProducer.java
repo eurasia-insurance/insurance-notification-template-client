@@ -1,20 +1,19 @@
-package tech.lapsa.insurance.notifier.beans.producers;
-
-import static tech.lapsa.insurance.notifier.beans.Constants.*;
+package tech.lapsa.insurance.notifierDaemon.mail;
 
 import javax.annotation.Resource;
 import javax.enterprise.inject.Produces;
 import javax.inject.Singleton;
 import javax.mail.Session;
 
-import tech.lapsa.insurance.notifier.beans.qualifiers.QRecipientCompany;
-import tech.lapsa.insurance.notifier.beans.qualifiers.QRecipientUser;
 import tech.lapsa.javax.mail.MailBuilderException;
 import tech.lapsa.javax.mail.MailFactory;
 import tech.lapsa.javax.mail.impl.SessionMailFactory;
 
 @Singleton
 public class MailFactoryProducer {
+
+    public static final String JNDI_MAIL_COMPANY = "insurance/mail/messaging/CompanyNotification";
+    public static final String JNDI_MAIL_USER = "insurance/mail/messaging/UserNotification";
 
     @Resource(mappedName = JNDI_MAIL_COMPANY)
     private Session companyMailSession;

@@ -1,4 +1,4 @@
-package tech.lapsa.insurance.notifier.beans.qualifiers;
+package tech.lapsa.insurance.notifierDaemon.mail;
 
 import static java.lang.annotation.ElementType.*;
 import static java.lang.annotation.RetentionPolicy.*;

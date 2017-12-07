@@ -1,12 +1,9 @@
-package tech.lapsa.insurance.notifier.beans;
+package tech.lapsa.insurance.notifierDaemon.drivenBeans;
 
 public final class Constants {
 
     private Constants() {
     }
-
-    public static final String JNDI_MAIL_COMPANY = "insurance/mail/messaging/CompanyNotification";
-    public static final String JNDI_MAIL_USER = "insurance/mail/messaging/UserNotification";
 
     public static final String JNDI_RESOURCE_CONFIGURATION = "insurance/resource/messaging/Configuration";
 

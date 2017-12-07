@@ -1,4 +1,4 @@
-package tech.lapsa.insurance.notifier.beans.mdb;
+package tech.lapsa.insurance.notifierDaemon.drivenBeans;
 
 import static tech.lapsa.insurance.shared.jms.InsuranceDestinations.*;
 
@@ -11,9 +11,7 @@ import com.lapsa.insurance.domain.Request;
 import com.lapsa.insurance.domain.casco.CascoRequest;
 import com.lapsa.international.localization.LocalizationLanguage;
 
-import tech.lapsa.insurance.notifier.beans.NotificationMessages;
-import tech.lapsa.insurance.notifier.beans.NotificationTemplates;
-import tech.lapsa.insurance.notifier.beans.qualifiers.QRecipientCompany;
+import tech.lapsa.insurance.notifierDaemon.mail.QRecipientCompany;
 import tech.lapsa.javax.mail.MailBuilderException;
 import tech.lapsa.javax.mail.MailFactory;
 import tech.lapsa.javax.mail.MailMessageBuilder;

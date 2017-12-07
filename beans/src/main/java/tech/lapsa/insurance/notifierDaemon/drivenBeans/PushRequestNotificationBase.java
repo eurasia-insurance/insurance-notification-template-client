@@ -1,6 +1,6 @@
-package tech.lapsa.insurance.notifier.beans.mdb;
+package tech.lapsa.insurance.notifierDaemon.drivenBeans;
 
-import static tech.lapsa.insurance.notifier.beans.Constants.*;
+import static tech.lapsa.insurance.notifierDaemon.drivenBeans.Constants.*;
 import static tech.lapsa.insurance.shared.jms.InsuranceDestinations.*;
 
 import java.net.MalformedURLException;
@@ -21,8 +21,7 @@ import com.lapsa.pushapi.services.PushFactory;
 import com.lapsa.pushapi.services.PushFactoryBuilderSPI;
 import com.lapsa.pushapi.services.PushMessage;
 
-import tech.lapsa.insurance.notifier.beans.NotificationMessages;
-import tech.lapsa.insurance.notifier.beans.mdb.push.PushJob;
+import tech.lapsa.insurance.notifierDaemon.drivenBeans.push.PushJob;
 import tech.lapsa.java.commons.logging.MyLogger;
 import tech.lapsa.javax.jms.client.JmsDestination;
 import tech.lapsa.javax.jms.client.JmsEventNotificatorClient;

@@ -1,6 +1,6 @@
-package tech.lapsa.insurance.notifier.beans.mdb;
+package tech.lapsa.insurance.notifierDaemon.drivenBeans;
 
-import static tech.lapsa.insurance.notifier.beans.Constants.*;
+import static tech.lapsa.insurance.notifierDaemon.drivenBeans.Constants.*;
 
 import java.util.Locale;
 import java.util.Properties;
@@ -9,8 +9,6 @@ import javax.annotation.Resource;
 
 import com.lapsa.insurance.domain.Request;
 
-import tech.lapsa.insurance.notifier.beans.NotificationMessages;
-import tech.lapsa.insurance.notifier.beans.NotificationTemplates;
 import tech.lapsa.javax.mail.MailBuilderException;
 import tech.lapsa.javax.mail.MailException;
 import tech.lapsa.javax.mail.MailFactory;

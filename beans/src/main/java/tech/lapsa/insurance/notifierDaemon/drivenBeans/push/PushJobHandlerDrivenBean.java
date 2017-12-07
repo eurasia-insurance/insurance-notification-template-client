@@ -1,4 +1,4 @@
-package tech.lapsa.insurance.notifier.beans.mdb.push;
+package tech.lapsa.insurance.notifierDaemon.drivenBeans.push;
 
 import java.time.Duration;
 import java.time.Instant;
