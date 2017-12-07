@@ -149,12 +149,6 @@
 			<optional>false</optional>
 		</dependency>
 		<dependency>
-			<groupId>tech.lapsa.insurance</groupId>
-			<artifactId>insurance-shared</artifactId>
-			<scope>compile</scope>
-			<optional>false</optional>
-		</dependency>
-		<dependency>
 			<groupId>tech.lapsa.pushapi</groupId>
 			<artifactId>pushapi-dao-client</artifactId>
 			<scope>compile</scope>
