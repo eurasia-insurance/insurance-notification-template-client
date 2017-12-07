@@ -9,6 +9,8 @@ import javax.annotation.Resource;
 
 import com.lapsa.insurance.domain.Request;
 
+import tech.lapsa.insurance.shared.notification.NotificationMessages;
+import tech.lapsa.insurance.shared.notification.NotificationTemplates;
 import tech.lapsa.javax.mail.MailBuilderException;
 import tech.lapsa.javax.mail.MailException;
 import tech.lapsa.javax.mail.MailFactory;

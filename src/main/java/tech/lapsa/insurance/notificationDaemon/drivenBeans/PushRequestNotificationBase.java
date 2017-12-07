@@ -22,6 +22,7 @@ import com.lapsa.pushapi.services.PushFactoryBuilderSPI;
 import com.lapsa.pushapi.services.PushMessage;
 
 import tech.lapsa.insurance.notificationDaemon.drivenBeans.push.PushJob;
+import tech.lapsa.insurance.shared.notification.NotificationMessages;
 import tech.lapsa.java.commons.logging.MyLogger;
 import tech.lapsa.javax.jms.client.JmsDestination;
 import tech.lapsa.javax.jms.client.JmsEventNotificatorClient;

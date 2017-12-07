@@ -10,6 +10,8 @@ import com.lapsa.insurance.domain.InsuranceRequest;
 import com.lapsa.insurance.domain.Request;
 import com.lapsa.international.localization.LocalizationLanguage;
 
+import tech.lapsa.insurance.shared.notification.NotificationMessages;
+
 @MessageDriven(mappedName = NOTIFIER_NEW_INSURANCE_COMPANY_PUSH)
 public class NewInsuranceCompanyPushDrivenBean extends PushRequestNotificationBase<InsuranceRequest> {
 

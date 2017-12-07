@@ -12,6 +12,8 @@ import com.lapsa.insurance.domain.RequesterData;
 import com.lapsa.insurance.domain.casco.CascoRequest;
 
 import tech.lapsa.insurance.notificationDaemon.resources.QRecipientUser;
+import tech.lapsa.insurance.shared.notification.NotificationMessages;
+import tech.lapsa.insurance.shared.notification.NotificationTemplates;
 import tech.lapsa.javax.mail.MailBuilderException;
 import tech.lapsa.javax.mail.MailFactory;
 import tech.lapsa.javax.mail.MailMessageBuilder;

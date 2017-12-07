@@ -13,6 +13,8 @@ import com.lapsa.insurance.domain.crm.User;
 import com.lapsa.international.localization.LocalizationLanguage;
 
 import tech.lapsa.insurance.notificationDaemon.resources.QRecipientCompany;
+import tech.lapsa.insurance.shared.notification.NotificationMessages;
+import tech.lapsa.insurance.shared.notification.NotificationTemplates;
 import tech.lapsa.java.commons.function.MyStrings;
 import tech.lapsa.javax.mail.MailBuilderException;
 import tech.lapsa.javax.mail.MailFactory;
