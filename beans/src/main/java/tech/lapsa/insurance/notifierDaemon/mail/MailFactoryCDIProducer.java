@@ -1,16 +1,16 @@
 package tech.lapsa.insurance.notifierDaemon.mail;
 
 import javax.annotation.Resource;
+import javax.enterprise.context.Dependent;
 import javax.enterprise.inject.Produces;
-import javax.inject.Singleton;
 import javax.mail.Session;
 
 import tech.lapsa.javax.mail.MailBuilderException;
 import tech.lapsa.javax.mail.MailFactory;
 import tech.lapsa.javax.mail.impl.SessionMailFactory;
 
-@Singleton
-public class MailFactoryProducer {
+@Dependent
+public class MailFactoryCDIProducer {
 
     public static final String JNDI_MAIL_COMPANY = "insurance/mail/messaging/CompanyNotification";
     public static final String JNDI_MAIL_USER = "insurance/mail/messaging/UserNotification";
