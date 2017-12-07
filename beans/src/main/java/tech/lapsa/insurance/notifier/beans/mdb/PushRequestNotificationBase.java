@@ -1,7 +1,7 @@
 package tech.lapsa.insurance.notifier.beans.mdb;
 
 import static tech.lapsa.insurance.notifier.beans.Constants.*;
-import static tech.lapsa.insurance.notifier.beans.NotifierDestinations.*;
+import static tech.lapsa.insurance.shared.jms.InsuranceDestinations.*;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -98,7 +98,7 @@ public abstract class PushRequestNotificationBase<T extends Request> extends Req
     }
 
     @Inject
-    @JmsDestination(JNDI_JMS_DEST_PUSH_JOBS)
+    @JmsDestination(NOTIFIER_PUSH_JOBS)
     private JmsEventNotificatorClient<PushJob> pushJobNotificatorClient;
 
     @Override

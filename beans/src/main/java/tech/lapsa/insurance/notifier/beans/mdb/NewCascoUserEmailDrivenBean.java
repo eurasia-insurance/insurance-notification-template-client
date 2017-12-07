@@ -1,6 +1,6 @@
 package tech.lapsa.insurance.notifier.beans.mdb;
 
-import static tech.lapsa.insurance.notifier.beans.NotifierDestinations.*;
+import static tech.lapsa.insurance.shared.jms.InsuranceDestinations.*;
 
 import java.util.Locale;
 
@@ -18,7 +18,7 @@ import tech.lapsa.javax.mail.MailBuilderException;
 import tech.lapsa.javax.mail.MailFactory;
 import tech.lapsa.javax.mail.MailMessageBuilder;
 
-@MessageDriven(mappedName = JNDI_JMS_DEST_NEW_CASCO_USER_EMAIL)
+@MessageDriven(mappedName = NOTIFIER_NEW_CASCO_USER_EMAIL)
 public class NewCascoUserEmailDrivenBean extends EmailRequestNotificationBase<CascoRequest> {
 
     @Inject

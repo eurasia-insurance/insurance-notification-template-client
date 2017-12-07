@@ -47,6 +47,18 @@
 			<optional>false</optional>
 		</dependency>
 		<dependency>
+			<groupId>tech.lapsa.insurance</groupId>
+			<artifactId>insurance-shared</artifactId>
+			<scope>compile</scope>
+			<optional>false</optional>
+		</dependency>
+		<dependency>
+			<groupId>tech.lapsa.insurance</groupId>
+			<artifactId>insurance-shared</artifactId>
+			<scope>compile</scope>
+			<optional>false</optional>
+		</dependency>
+		<dependency>
 			<groupId>tech.lapsa.pushapi</groupId>
 			<artifactId>pushapi-dao-client</artifactId>
 			<scope>compile</scope>
@@ -59,14 +71,13 @@
 			<scope>runtime</scope>
 			<optional>false</optional>
 		</dependency>
-		<!-- own -->
+		<!-- oldies -->
 		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>insurance-notifier-client</artifactId>
+			<groupId>com.lapsa.insurance-lib</groupId>
+			<artifactId>insurance-domain</artifactId>
 			<scope>compile</scope>
 			<optional>false</optional>
 		</dependency>
-		<!-- oldies -->
 		<dependency>
 			<groupId>com.lapsa.pushapi-lib</groupId>
 			<artifactId>pushapi-core</artifactId>

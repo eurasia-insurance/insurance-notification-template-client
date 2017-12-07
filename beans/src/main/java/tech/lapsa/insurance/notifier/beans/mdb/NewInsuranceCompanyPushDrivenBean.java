@@ -1,6 +1,6 @@
 package tech.lapsa.insurance.notifier.beans.mdb;
 
-import static tech.lapsa.insurance.notifier.beans.NotifierDestinations.*;
+import static tech.lapsa.insurance.shared.jms.InsuranceDestinations.*;
 
 import java.util.Locale;
 
@@ -13,7 +13,7 @@ import com.lapsa.international.localization.LocalizationLanguage;
 import tech.lapsa.insurance.notifier.beans.Constants;
 import tech.lapsa.insurance.notifier.beans.NotificationMessages;
 
-@MessageDriven(mappedName = JNDI_JMS_DEST_NEW_INSURANCE_COMPANY_PUSH)
+@MessageDriven(mappedName = NOTIFIER_NEW_INSURANCE_COMPANY_PUSH)
 public class NewInsuranceCompanyPushDrivenBean extends PushRequestNotificationBase<InsuranceRequest> {
 
     public NewInsuranceCompanyPushDrivenBean() {
