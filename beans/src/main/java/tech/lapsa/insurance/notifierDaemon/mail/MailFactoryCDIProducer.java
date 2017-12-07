@@ -18,6 +18,8 @@ public class MailFactoryCDIProducer {
     @Resource(mappedName = JNDI_MAIL_COMPANY)
     private Session companyMailSession;
 
+    
+    // TODO FEAUTURE : implement using injection point and accuring JNDI_PATH from annotation
     @Produces
     @QRecipientCompany
     public MailFactory companyMailFactory() throws MailBuilderException {
