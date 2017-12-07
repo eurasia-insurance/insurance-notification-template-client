@@ -1,6 +1,6 @@
-package tech.lapsa.insurance.notifierDaemon.drivenBeans;
+package tech.lapsa.insurance.notificationDaemon.drivenBeans;
 
-import static tech.lapsa.insurance.notifierDaemon.drivenBeans.Constants.*;
+import static tech.lapsa.insurance.notificationDaemon.drivenBeans.Constants.*;
 
 import java.util.Locale;
 import java.util.Properties;

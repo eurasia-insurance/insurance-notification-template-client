@@ -1,4 +1,4 @@
-package tech.lapsa.insurance.notifierDaemon.drivenBeans;
+package tech.lapsa.insurance.notificationDaemon.drivenBeans;
 
 import java.io.InputStream;
 import java.util.Locale;

@@ -1,4 +1,4 @@
-package tech.lapsa.insurance.notifierDaemon.drivenBeans;
+package tech.lapsa.insurance.notificationDaemon.drivenBeans;
 
 import tech.lapsa.java.commons.localization.LocalizedElement;
 

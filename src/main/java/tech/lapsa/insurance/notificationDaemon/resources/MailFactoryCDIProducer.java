@@ -1,4 +1,4 @@
-package tech.lapsa.insurance.notifierDaemon.mail;
+package tech.lapsa.insurance.notificationDaemon.resources;
 
 import javax.annotation.Resource;
 import javax.enterprise.context.Dependent;

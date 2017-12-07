@@ -1,4 +1,4 @@
-package tech.lapsa.insurance.notifierDaemon.drivenBeans;
+package tech.lapsa.insurance.notificationDaemon.drivenBeans;
 
 import static tech.lapsa.insurance.shared.jms.InsuranceDestinations.*;
 
@@ -12,7 +12,7 @@ import com.lapsa.insurance.domain.Request;
 import com.lapsa.insurance.domain.crm.User;
 import com.lapsa.international.localization.LocalizationLanguage;
 
-import tech.lapsa.insurance.notifierDaemon.mail.QRecipientCompany;
+import tech.lapsa.insurance.notificationDaemon.resources.QRecipientCompany;
 import tech.lapsa.java.commons.function.MyStrings;
 import tech.lapsa.javax.mail.MailBuilderException;
 import tech.lapsa.javax.mail.MailFactory;

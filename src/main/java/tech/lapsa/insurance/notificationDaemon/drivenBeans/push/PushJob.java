@@ -1,4 +1,4 @@
-package tech.lapsa.insurance.notifierDaemon.drivenBeans.push;
+package tech.lapsa.insurance.notificationDaemon.drivenBeans.push;
 
 import java.io.Serializable;
 import java.util.Properties;
