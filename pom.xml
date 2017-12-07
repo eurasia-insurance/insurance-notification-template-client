@@ -16,7 +16,6 @@
 	<name>Insurance Lib : Notifier</name>
 
 	<modules>
-		<module>client</module>
 		<module>beans</module>
 	</modules>
 
@@ -29,6 +28,7 @@
 		<javax-jms-rpc.version>1.0-SNAPSHOT</javax-jms-rpc.version>
 		<lapsa-text.version>1.1-SNAPSHOT</lapsa-text.version>
 		<pushapi-dao.version>1.1-SNAPSHOT</pushapi-dao.version>
+		<insurance-shared.version>1.0-SNAPSHOT</insurance-shared.version>
 		<!-- oldies -->
 		<insurance-lib.version>2.4-SNAPSHOT</insurance-lib.version>
 		<pushapi-lib.version>1.2-SNAPSHOT</pushapi-lib.version>
@@ -78,12 +78,12 @@
 				<artifactId>lapsa-text</artifactId>
 				<version>${lapsa-text.version}</version>
 			</dependency>
-			<!-- own -->
 			<dependency>
-				<groupId>${project.groupId}</groupId>
-				<artifactId>insurance-notifier-client</artifactId>
-				<version>${project.version}</version>
+				<groupId>tech.lapsa.insurance</groupId>
+				<artifactId>insurance-shared</artifactId>
+				<version>${insurance-shared.version}</version>
 			</dependency>
+			<!-- own -->
 			<dependency>
 				<groupId>${project.groupId}</groupId>
 				<artifactId>insurance-notifier</artifactId>
