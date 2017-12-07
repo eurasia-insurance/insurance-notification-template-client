@@ -9,11 +9,11 @@
 	</parent>
 
 	<groupId>tech.lapsa.insurance</groupId>
-	<artifactId>insurance-notifier-daemon</artifactId>
+	<artifactId>insurance-notification-daemon</artifactId>
 	<version>1.1-SNAPSHOT</version>
 	<packaging>ejb</packaging>
 
-	<name>Insurance Lib : Notifier daemon</name>
+	<name>Insurance Lib : Notification daemon</name>
 
 	<properties>
 		<!-- BOMS -->
@@ -222,14 +222,14 @@
 	</dependencies>
 
 	<scm>
-		<connection>scm:git:https://gitlab.lapsa.tech/lapsa/insurance/notifier.git</connection>
-		<developerConnection>scm:git:https://gitlab.lapsa.tech/lapsa/insurance/notifier.git</developerConnection>
+		<connection>scm:git:https://gitlab.lapsa.tech/lapsa/insurance/notification-daemon.git</connection>
+		<developerConnection>scm:git:https://gitlab.lapsa.tech/lapsa/insurance/notification-daemon.git</developerConnection>
 		<tag>HEAD</tag>
 	</scm>
 
 	<issueManagement>
 		<system>gitlab</system>
-		<url>https://gitlab.lapsa.tech/lapsa/insurance/notifier/issues</url>
+		<url>https://gitlab.lapsa.tech/lapsa/insurance/notification-daemon/issues</url>
 	</issueManagement>
 
 </project>
