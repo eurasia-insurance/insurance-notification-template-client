@@ -23,6 +23,7 @@ import com.lapsa.pushapi.services.PushMessage;
 
 import tech.lapsa.insurance.notificationDaemon.drivenBeans.push.PushJob;
 import tech.lapsa.insurance.shared.notification.NotificationMessages;
+import tech.lapsa.java.commons.exceptions.IllegalArgument;
 import tech.lapsa.java.commons.logging.MyLogger;
 import tech.lapsa.javax.jms.client.JmsDestination;
 import tech.lapsa.javax.jms.client.JmsEventNotificatorClient;
@@ -74,7 +75,7 @@ public abstract class PushRequestNotificationBase<T extends Request> extends Req
 	    final String pushChannelId = configurationProperties.getProperty(getChannelIdConfigurationProperty(), null);
 	    try {
 		pchannel = pushChannelDAO.getById(pushChannelId);
-	    } catch (final NotFound e) {
+	    } catch (final NotFound | IllegalArgument e) {
 		throw new EJBException(String.format("Failed to initialize CDI-bean %1$s. Invalid channelId %2$s",
 			this.getClass().getName(), pushChannelId), e);
 	    }
