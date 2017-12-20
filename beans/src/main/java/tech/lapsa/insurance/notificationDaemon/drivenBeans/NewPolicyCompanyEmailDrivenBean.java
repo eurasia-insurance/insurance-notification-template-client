@@ -12,8 +12,6 @@ import com.lapsa.insurance.domain.policy.PolicyRequest;
 import com.lapsa.international.localization.LocalizationLanguage;
 
 import tech.lapsa.insurance.notificationDaemon.resources.QRecipientCompany;
-import tech.lapsa.insurance.shared.notification.NotificationMessages;
-import tech.lapsa.insurance.shared.notification.NotificationTemplates;
 import tech.lapsa.javax.mail.MailBuilderException;
 import tech.lapsa.javax.mail.MailFactory;
 import tech.lapsa.javax.mail.MailMessageBuilder;
