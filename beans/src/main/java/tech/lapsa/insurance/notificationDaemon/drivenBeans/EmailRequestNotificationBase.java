@@ -13,7 +13,7 @@ import com.lapsa.insurance.domain.Request;
 
 import tech.lapsa.insurance.notificationDaemon.template.NotificationMessages;
 import tech.lapsa.insurance.notificationDaemon.template.NotificationTemplates;
-import tech.lapsa.insurance.notificationDaemon.template.TemplateProvider.TemplateProviderRemote;
+import tech.lapsa.insurance.notificationDaemon.template.InsuranceTemplateProvider.InsuranceTemplateProviderRemote;
 import tech.lapsa.java.commons.exceptions.IllegalArgument;
 import tech.lapsa.javax.mail.MailBuilderException;
 import tech.lapsa.javax.mail.MailException;
@@ -41,7 +41,7 @@ public abstract class EmailRequestNotificationBase<T extends Request> extends Re
     private Properties configurationProperties;
 
     @EJB
-    private TemplateProviderRemote templates;
+    private InsuranceTemplateProviderRemote templates;
 
     @Override
     protected void sendWithModel(final TextModel textModel, final T request) {
