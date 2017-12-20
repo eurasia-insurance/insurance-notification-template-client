@@ -22,12 +22,9 @@
 		<!-- tech -->
 		<javax-jms-rpc.version>1.0-SNAPSHOT</javax-jms-rpc.version>
 		<lapsa-text.version>1.1-SNAPSHOT</lapsa-text.version>
-		<pushapi-dao.version>1.1-SNAPSHOT</pushapi-dao.version>
 		<insurance-shared.version>1.0-SNAPSHOT</insurance-shared.version>
 		<!-- oldies -->
 		<insurance-lib.version>2.4-SNAPSHOT</insurance-lib.version>
-		<pushapi-lib.version>1.2-SNAPSHOT</pushapi-lib.version>
-		<pushapi-sender-impl-default.version>1.2-SNAPSHOT</pushapi-sender-impl-default.version>
 	</properties>
 
 	<dependencyManagement>
@@ -51,13 +48,6 @@
 				<groupId>tech.lapsa.javax</groupId>
 				<artifactId>javax-mail-root</artifactId>
 				<version>${javax-mail.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-			<dependency>
-				<groupId>tech.lapsa.pushapi</groupId>
-				<artifactId>pushapi-dao-root</artifactId>
-				<version>${pushapi-dao.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
@@ -92,18 +82,6 @@
 				<version>${insurance-lib.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
-			</dependency>
-			<dependency>
-				<groupId>com.lapsa.pushapi-lib</groupId>
-				<artifactId>pushapi-root</artifactId>
-				<version>${pushapi-lib.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-			<dependency>
-				<groupId>com.lapsa.pushapi-lib</groupId>
-				<artifactId>pushapi-sender-impl-default</artifactId>
-				<version>${pushapi-sender-impl-default.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
@@ -148,42 +126,11 @@
 			<scope>compile</scope>
 			<optional>false</optional>
 		</dependency>
-		<dependency>
-			<groupId>tech.lapsa.pushapi</groupId>
-			<artifactId>pushapi-dao-client</artifactId>
-			<scope>compile</scope>
-			<optional>false</optional>
-		</dependency>
-		<dependency>
-			<groupId>tech.lapsa.pushapi</groupId>
-			<artifactId>pushapi-dao</artifactId>
-			<type>ejb</type>
-			<scope>runtime</scope>
-			<optional>false</optional>
-		</dependency>
 		<!-- oldies -->
 		<dependency>
 			<groupId>com.lapsa.insurance-lib</groupId>
 			<artifactId>insurance-domain</artifactId>
 			<scope>compile</scope>
-			<optional>false</optional>
-		</dependency>
-		<dependency>
-			<groupId>com.lapsa.pushapi-lib</groupId>
-			<artifactId>pushapi-core</artifactId>
-			<scope>compile</scope>
-			<optional>false</optional>
-		</dependency>
-		<dependency>
-			<groupId>com.lapsa.pushapi-lib</groupId>
-			<artifactId>pushapi-sender</artifactId>
-			<scope>compile</scope>
-			<optional>false</optional>
-		</dependency>
-		<dependency>
-			<groupId>com.lapsa.pushapi-lib</groupId>
-			<artifactId>pushapi-sender-impl-default</artifactId>
-			<scope>runtime</scope>
 			<optional>false</optional>
 		</dependency>
 		<!-- JavaEE -->
