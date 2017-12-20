@@ -24,6 +24,7 @@
 		<!-- BOMS -->
 		<java-commons.version>1.1-SNAPSHOT</java-commons.version>
 		<javax-javaee-bom.version>7.0</javax-javaee-bom.version>
+		<payara-bom.version>4.1.2-2-SNAPSHOT</payara-bom.version>
 		<javax-mail.version>2.0</javax-mail.version>
 		<!-- tech -->
 		<javax-jms-rpc.version>1.0-SNAPSHOT</javax-jms-rpc.version>
@@ -47,6 +48,13 @@
 				<groupId>tech.lapsa.javax</groupId>
 				<artifactId>javax-javaee-bom</artifactId>
 				<version>${javax-javaee-bom.version}</version>
+				<scope>import</scope>
+				<type>pom</type>
+			</dependency>
+			<dependency>
+				<groupId>tech.lapsa.payara</groupId>
+				<artifactId>payara-bom</artifactId>
+				<version>${payara-bom.version}</version>
 				<scope>import</scope>
 				<type>pom</type>
 			</dependency>
