@@ -8,26 +8,30 @@
 	</parent>
 
 	<groupId>tech.lapsa.insurance</groupId>
-	<artifactId>insurance-notification-daemon</artifactId>
+	<artifactId>insurance-notification-daemon-root</artifactId>
 	<version>2.0-SNAPSHOT</version>
-	<packaging>ejb</packaging>
+	<packaging>pom</packaging>
 
 	<name>Insurance Lib : Notification daemon</name>
+
+	<modules>
+		<module>template-client</module>
+		<module>beans</module>
+		<module>app</module>
+	</modules>
 
 	<properties>
 		<!-- BOMS -->
 		<java-commons.version>1.1-SNAPSHOT</java-commons.version>
 		<javax-javaee-bom.version>7.0</javax-javaee-bom.version>
+		<payara-bom.version>4.1.2-2-SNAPSHOT</payara-bom.version>
 		<javax-mail.version>2.0</javax-mail.version>
 		<!-- tech -->
 		<javax-jms-rpc.version>1.0-SNAPSHOT</javax-jms-rpc.version>
 		<lapsa-text.version>1.1-SNAPSHOT</lapsa-text.version>
-		<pushapi-dao.version>1.1-SNAPSHOT</pushapi-dao.version>
 		<insurance-shared.version>1.0-SNAPSHOT</insurance-shared.version>
 		<!-- oldies -->
 		<insurance-lib.version>2.4-SNAPSHOT</insurance-lib.version>
-		<pushapi-lib.version>1.2-SNAPSHOT</pushapi-lib.version>
-		<pushapi-sender-impl-default.version>1.2-SNAPSHOT</pushapi-sender-impl-default.version>
 	</properties>
 
 	<dependencyManagement>
@@ -48,16 +52,16 @@
 				<type>pom</type>
 			</dependency>
 			<dependency>
+				<groupId>tech.lapsa.payara</groupId>
+				<artifactId>payara-bom</artifactId>
+				<version>${payara-bom.version}</version>
+				<scope>import</scope>
+				<type>pom</type>
+			</dependency>
+			<dependency>
 				<groupId>tech.lapsa.javax</groupId>
 				<artifactId>javax-mail-root</artifactId>
 				<version>${javax-mail.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-			<dependency>
-				<groupId>tech.lapsa.pushapi</groupId>
-				<artifactId>pushapi-dao-root</artifactId>
-				<version>${pushapi-dao.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
@@ -81,9 +85,20 @@
 			<!-- own -->
 			<dependency>
 				<groupId>${project.groupId}</groupId>
-				<artifactId>insurance-notifier</artifactId>
+				<artifactId>insurance-notification-daemon-template-client</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>insurance-notification-daemon</artifactId>
 				<version>${project.version}</version>
 				<type>ejb</type>
+			</dependency>
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>insurance-notification-daemon-app</artifactId>
+				<version>${project.version}</version>
+				<type>ear</type>
 			</dependency>
 			<!-- oldies -->
 			<dependency>
@@ -93,126 +108,8 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
-			<dependency>
-				<groupId>com.lapsa.pushapi-lib</groupId>
-				<artifactId>pushapi-root</artifactId>
-				<version>${pushapi-lib.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-			<dependency>
-				<groupId>com.lapsa.pushapi-lib</groupId>
-				<artifactId>pushapi-sender-impl-default</artifactId>
-				<version>${pushapi-sender-impl-default.version}</version>
-			</dependency>
 		</dependencies>
 	</dependencyManagement>
-
-
-	<dependencies>
-		<!-- tech -->
-		<dependency>
-			<groupId>tech.lapsa.java</groupId>
-			<artifactId>java-commons</artifactId>
-			<scope>compile</scope>
-			<optional>false</optional>
-		</dependency>
-		<dependency>
-			<groupId>tech.lapsa.javax</groupId>
-			<artifactId>javax-mail-api</artifactId>
-			<scope>compile</scope>
-			<optional>false</optional>
-		</dependency>
-		<dependency>
-			<groupId>tech.lapsa.javax</groupId>
-			<artifactId>javax-mail-impl</artifactId>
-			<scope>compile</scope>
-			<optional>false</optional>
-		</dependency>
-		<dependency>
-			<groupId>tech.lapsa.javax</groupId>
-			<artifactId>javax-jms-rpc</artifactId>
-			<type>ejb</type>
-			<scope>compile</scope>
-			<optional>false</optional>
-		</dependency>
-		<dependency>
-			<groupId>tech.lapsa.lapsa</groupId>
-			<artifactId>lapsa-text</artifactId>
-			<scope>compile</scope>
-			<optional>false</optional>
-		</dependency>
-		<dependency>
-			<groupId>tech.lapsa.insurance</groupId>
-			<artifactId>insurance-shared</artifactId>
-			<scope>compile</scope>
-			<optional>false</optional>
-		</dependency>
-		<dependency>
-			<groupId>tech.lapsa.pushapi</groupId>
-			<artifactId>pushapi-dao-client</artifactId>
-			<scope>compile</scope>
-			<optional>false</optional>
-		</dependency>
-		<dependency>
-			<groupId>tech.lapsa.pushapi</groupId>
-			<artifactId>pushapi-dao</artifactId>
-			<type>ejb</type>
-			<scope>runtime</scope>
-			<optional>false</optional>
-		</dependency>
-		<!-- oldies -->
-		<dependency>
-			<groupId>com.lapsa.insurance-lib</groupId>
-			<artifactId>insurance-domain</artifactId>
-			<scope>compile</scope>
-			<optional>false</optional>
-		</dependency>
-		<dependency>
-			<groupId>com.lapsa.pushapi-lib</groupId>
-			<artifactId>pushapi-core</artifactId>
-			<scope>compile</scope>
-			<optional>false</optional>
-		</dependency>
-		<dependency>
-			<groupId>com.lapsa.pushapi-lib</groupId>
-			<artifactId>pushapi-sender</artifactId>
-			<scope>compile</scope>
-			<optional>false</optional>
-		</dependency>
-		<dependency>
-			<groupId>com.lapsa.pushapi-lib</groupId>
-			<artifactId>pushapi-sender-impl-default</artifactId>
-			<scope>runtime</scope>
-			<optional>false</optional>
-		</dependency>
-		<!-- JavaEE -->
-		<dependency>
-			<groupId>com.sun.mail</groupId>
-			<artifactId>javax.mail</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>javax.enterprise</groupId>
-			<artifactId>cdi-api</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>javax.jms</groupId>
-			<artifactId>javax.jms-api</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>javax.ejb</groupId>
-			<artifactId>javax.ejb-api</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>javax.validation</groupId>
-			<artifactId>validation-api</artifactId>
-			<scope>provided</scope>
-		</dependency>
-	</dependencies>
 
 	<scm>
 		<connection>scm:git:https://gitlab.lapsa.tech/lapsa/insurance/notification-daemon.git</connection>

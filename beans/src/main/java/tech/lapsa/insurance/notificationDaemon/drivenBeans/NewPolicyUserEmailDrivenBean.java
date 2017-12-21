@@ -8,25 +8,25 @@ import javax.ejb.MessageDriven;
 import javax.inject.Inject;
 
 import com.lapsa.insurance.domain.Request;
-import com.lapsa.insurance.domain.casco.CascoRequest;
-import com.lapsa.international.localization.LocalizationLanguage;
+import com.lapsa.insurance.domain.RequesterData;
+import com.lapsa.insurance.domain.policy.PolicyRequest;
 
-import tech.lapsa.insurance.notificationDaemon.resources.QRecipientCompany;
-import tech.lapsa.insurance.shared.notification.NotificationMessages;
-import tech.lapsa.insurance.shared.notification.NotificationTemplates;
+import tech.lapsa.insurance.notificationDaemon.resources.QRecipientUser;
+import tech.lapsa.insurance.notificationDaemon.template.NotificationMessages;
+import tech.lapsa.insurance.notificationDaemon.template.NotificationTemplates;
 import tech.lapsa.javax.mail.MailBuilderException;
 import tech.lapsa.javax.mail.MailFactory;
 import tech.lapsa.javax.mail.MailMessageBuilder;
 
-@MessageDriven(mappedName = NOTIFIER_NEW_CASCO_COMPANY_EMAIL)
-public class NewCascoCompanyEmailDrivenBean extends EmailRequestNotificationBase<CascoRequest> {
+@MessageDriven(mappedName = NOTIFIER_NEW_POLICY_USER_EMAIL)
+public class NewPolicyUserEmailDrivenBean extends EmailRequestNotificationBase<PolicyRequest> {
 
     @Inject
-    @QRecipientCompany
+    @QRecipientUser
     protected MailFactory mailFactory;
 
-    public NewCascoCompanyEmailDrivenBean() {
-	super(CascoRequest.class);
+    public NewPolicyUserEmailDrivenBean() {
+	super(PolicyRequest.class);
     }
 
     @Override
@@ -37,21 +37,22 @@ public class NewCascoCompanyEmailDrivenBean extends EmailRequestNotificationBase
     @Override
     protected MailMessageBuilder recipients(final MailMessageBuilder builder, final Request request)
 	    throws MailBuilderException {
-	return builder.withDefaultRecipient();
+	final RequesterData requester = request.getRequester();
+	return builder.withTORecipient(requester.getEmail(), requester.getName());
     }
 
     @Override
     protected Locale locale(final Request request) {
-	return LocalizationLanguage.RUSSIAN.getLocale();
+	return request.getRequester().getPreferLanguage().getLocale();
     }
 
     @Override
     protected NotificationMessages getSubjectTemplate() {
-	return NotificationMessages.CASCO_COMPANY_EMAIL_SUBJECT;
+	return NotificationMessages.POLICY_USER_EMAIL_SUBJECT;
     }
 
     @Override
     protected NotificationTemplates getBodyTemplate() {
-	return NotificationTemplates.NEW_CASCO_COMPANY_EMAIL_TEMPLATE;
+	return NotificationTemplates.NEW_POLICY_USER_EMAIL_TEMPLATE;
     }
 }

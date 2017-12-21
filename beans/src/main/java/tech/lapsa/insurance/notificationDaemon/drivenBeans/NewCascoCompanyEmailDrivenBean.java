@@ -7,28 +7,26 @@ import java.util.Locale;
 import javax.ejb.MessageDriven;
 import javax.inject.Inject;
 
-import com.lapsa.insurance.domain.InsuranceRequest;
 import com.lapsa.insurance.domain.Request;
-import com.lapsa.insurance.domain.crm.User;
+import com.lapsa.insurance.domain.casco.CascoRequest;
 import com.lapsa.international.localization.LocalizationLanguage;
 
 import tech.lapsa.insurance.notificationDaemon.resources.QRecipientCompany;
-import tech.lapsa.insurance.shared.notification.NotificationMessages;
-import tech.lapsa.insurance.shared.notification.NotificationTemplates;
-import tech.lapsa.java.commons.function.MyStrings;
+import tech.lapsa.insurance.notificationDaemon.template.NotificationMessages;
+import tech.lapsa.insurance.notificationDaemon.template.NotificationTemplates;
 import tech.lapsa.javax.mail.MailBuilderException;
 import tech.lapsa.javax.mail.MailFactory;
 import tech.lapsa.javax.mail.MailMessageBuilder;
 
-@MessageDriven(mappedName = NOTIFIER_REQUEST_PAID_COMPANY_EMAIL)
-public class RequestPaidCompanyEmailDrivenBean extends EmailRequestNotificationBase<InsuranceRequest> {
+@MessageDriven(mappedName = NOTIFIER_NEW_CASCO_COMPANY_EMAIL)
+public class NewCascoCompanyEmailDrivenBean extends EmailRequestNotificationBase<CascoRequest> {
 
     @Inject
     @QRecipientCompany
     protected MailFactory mailFactory;
 
-    public RequestPaidCompanyEmailDrivenBean() {
-	super(InsuranceRequest.class);
+    public NewCascoCompanyEmailDrivenBean() {
+	super(CascoRequest.class);
     }
 
     @Override
@@ -39,9 +37,6 @@ public class RequestPaidCompanyEmailDrivenBean extends EmailRequestNotificationB
     @Override
     protected MailMessageBuilder recipients(final MailMessageBuilder builder, final Request request)
 	    throws MailBuilderException {
-	final User a = request.getAcceptedBy();
-	if (a != null && MyStrings.nonEmpty(a.getEmail()))
-	    return builder.withTORecipient(a.getEmail(), a.getName());
 	return builder.withDefaultRecipient();
     }
 
@@ -52,11 +47,11 @@ public class RequestPaidCompanyEmailDrivenBean extends EmailRequestNotificationB
 
     @Override
     protected NotificationMessages getSubjectTemplate() {
-	return NotificationMessages.INUSNRANCE_PAID_COMPANY_EMAIL_SUBJECT;
+	return NotificationMessages.CASCO_COMPANY_EMAIL_SUBJECT;
     }
 
     @Override
     protected NotificationTemplates getBodyTemplate() {
-	return NotificationTemplates.INUSNRANCE_PAID_COMPANY_EMAIL_TEMPLATE;
+	return NotificationTemplates.NEW_CASCO_COMPANY_EMAIL_TEMPLATE;
     }
 }

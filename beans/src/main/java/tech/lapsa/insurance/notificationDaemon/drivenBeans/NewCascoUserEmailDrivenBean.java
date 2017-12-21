@@ -9,24 +9,24 @@ import javax.inject.Inject;
 
 import com.lapsa.insurance.domain.Request;
 import com.lapsa.insurance.domain.RequesterData;
-import com.lapsa.insurance.domain.policy.PolicyRequest;
+import com.lapsa.insurance.domain.casco.CascoRequest;
 
 import tech.lapsa.insurance.notificationDaemon.resources.QRecipientUser;
-import tech.lapsa.insurance.shared.notification.NotificationMessages;
-import tech.lapsa.insurance.shared.notification.NotificationTemplates;
+import tech.lapsa.insurance.notificationDaemon.template.NotificationMessages;
+import tech.lapsa.insurance.notificationDaemon.template.NotificationTemplates;
 import tech.lapsa.javax.mail.MailBuilderException;
 import tech.lapsa.javax.mail.MailFactory;
 import tech.lapsa.javax.mail.MailMessageBuilder;
 
-@MessageDriven(mappedName = NOTIFIER_NEW_POLICY_USER_EMAIL)
-public class NewPolicyUserEmailDrivenBean extends EmailRequestNotificationBase<PolicyRequest> {
+@MessageDriven(mappedName = NOTIFIER_NEW_CASCO_USER_EMAIL)
+public class NewCascoUserEmailDrivenBean extends EmailRequestNotificationBase<CascoRequest> {
 
     @Inject
     @QRecipientUser
     protected MailFactory mailFactory;
 
-    public NewPolicyUserEmailDrivenBean() {
-	super(PolicyRequest.class);
+    public NewCascoUserEmailDrivenBean() {
+	super(CascoRequest.class);
     }
 
     @Override
@@ -48,11 +48,11 @@ public class NewPolicyUserEmailDrivenBean extends EmailRequestNotificationBase<P
 
     @Override
     protected NotificationMessages getSubjectTemplate() {
-	return NotificationMessages.POLICY_USER_EMAIL_SUBJECT;
+	return NotificationMessages.CASCO_USER_EMAIL_SUBJECT;
     }
 
     @Override
     protected NotificationTemplates getBodyTemplate() {
-	return NotificationTemplates.NEW_POLICY_USER_EMAIL_TEMPLATE;
+	return NotificationTemplates.NEW_CASCO_USER_EMAIL_TEMPLATE;
     }
 }
