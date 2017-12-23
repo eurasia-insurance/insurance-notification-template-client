@@ -46,7 +46,6 @@ public abstract class RequestNotificationBase<T extends Request> extends JmsRece
 	    final InsuranceRequest insuranceRequest = (InsuranceRequest) request;
 	    builder.bind("insuranceRequest", insuranceRequest) //
 		    .bind("product", insuranceRequest.getProduct()) //
-		    .bind("obtaining", insuranceRequest.getObtaining()) //
 		    .bind("payment", insuranceRequest.getPayment());
 	}
 
