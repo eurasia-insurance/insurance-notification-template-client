@@ -9,7 +9,7 @@
 
 	<artifactId>insurance-notification-daemon-template-client</artifactId>
 
-	<name>Insurance Lib : Notification daemon : Template client</name>
+	<name>Insurance Lib : Notification daemon : Template EJB-client</name>
 
 	<dependencies>
 		<!-- tech -->
