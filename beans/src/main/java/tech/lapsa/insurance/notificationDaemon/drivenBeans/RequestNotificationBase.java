@@ -14,8 +14,8 @@ import com.lapsa.insurance.domain.casco.CascoRequest;
 import com.lapsa.insurance.domain.policy.PolicyRequest;
 
 import tech.lapsa.java.commons.function.MyObjects;
-import tech.lapsa.javax.jms.service.JmsReceiverServiceDrivenBean;
-import tech.lapsa.javax.jms.service.JmsSkipValidation;
+import tech.lapsa.lapsa.jmsRPC.service.JmsReceiverServiceDrivenBean;
+import tech.lapsa.lapsa.jmsRPC.service.JmsSkipValidation;
 import tech.lapsa.lapsa.text.TextFactory;
 import tech.lapsa.lapsa.text.TextFactory.TextModelBuilder;
 import tech.lapsa.lapsa.text.TextFactory.TextModelBuilder.TextModel;
