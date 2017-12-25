@@ -10,7 +10,7 @@
 	<artifactId>insurance-notification-daemon-app</artifactId>
 	<packaging>ear</packaging>
 
-	<name>Insurance Lib : Notification daemon : EE Application</name>
+	<name>Insurance Lib : Notification daemon : EAR</name>
 
 	<dependencies>
 		<dependency>
