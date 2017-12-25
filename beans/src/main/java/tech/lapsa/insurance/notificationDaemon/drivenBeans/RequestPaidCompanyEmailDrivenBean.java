@@ -16,9 +16,9 @@ import tech.lapsa.insurance.notificationDaemon.resources.QRecipientCompany;
 import tech.lapsa.insurance.notificationDaemon.template.NotificationMessages;
 import tech.lapsa.insurance.notificationDaemon.template.NotificationTemplates;
 import tech.lapsa.java.commons.function.MyStrings;
-import tech.lapsa.javax.mail.MailBuilderException;
-import tech.lapsa.javax.mail.MailFactory;
-import tech.lapsa.javax.mail.MailMessageBuilder;
+import tech.lapsa.lapsa.mail.MailBuilderException;
+import tech.lapsa.lapsa.mail.MailFactory;
+import tech.lapsa.lapsa.mail.MailMessageBuilder;
 
 @MessageDriven(mappedName = NOTIFIER_REQUEST_PAID_COMPANY_EMAIL)
 public class RequestPaidCompanyEmailDrivenBean extends EmailRequestNotificationBase<InsuranceRequest> {

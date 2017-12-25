@@ -5,9 +5,9 @@ import javax.enterprise.context.Dependent;
 import javax.enterprise.inject.Produces;
 import javax.mail.Session;
 
-import tech.lapsa.javax.mail.MailBuilderException;
-import tech.lapsa.javax.mail.MailFactory;
-import tech.lapsa.javax.mail.impl.SessionMailFactory;
+import tech.lapsa.lapsa.mail.MailBuilderException;
+import tech.lapsa.lapsa.mail.MailFactory;
+import tech.lapsa.lapsa.mail.impl.SessionMailFactory;
 
 @Dependent
 public class MailFactoryCDIProducer {
