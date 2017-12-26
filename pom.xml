@@ -22,15 +22,15 @@
 
 	<properties>
 		<!-- BOMS -->
-		<java-commons.version>1.1-SNAPSHOT</java-commons.version>
-		<javax-javaee-bom.version>7.0a-SNAPSHOT</javax-javaee-bom.version>
-		<payara-bom.version>4.1.2-2-SNAPSHOT</payara-bom.version>
-		<lapsa-mail.version>2.1-SNAPSHOT</lapsa-mail.version>
+		<java-commons.version>1.1</java-commons.version>
+		<javax-javaee-bom.version>7.0a</javax-javaee-bom.version>
+		<payara-bom.version>4.1.2-2</payara-bom.version>
+		<lapsa-mail.version>2.1</lapsa-mail.version>
 		<!-- tech -->
-		<lapsa-jms-rpc.version>1.0-SNAPSHOT</lapsa-jms-rpc.version>
-		<lapsa-text.version>1.1-SNAPSHOT</lapsa-text.version>
-		<insurance-shared.version>1.0-SNAPSHOT</insurance-shared.version>
-		<insurance-domain.version>2.4-SNAPSHOT</insurance-domain.version>
+		<lapsa-jms-rpc.version>1.0</lapsa-jms-rpc.version>
+		<lapsa-text.version>1.1</lapsa-text.version>
+		<insurance-shared.version>1.0</insurance-shared.version>
+		<insurance-domain.version>2.4</insurance-domain.version>
 	</properties>
 
 	<dependencyManagement>
