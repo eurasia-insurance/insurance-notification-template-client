@@ -8,29 +8,15 @@
 	</parent>
 
 	<groupId>tech.lapsa.insurance</groupId>
-	<artifactId>insurance-notification-daemon-root</artifactId>
+	<artifactId>insurance-notification-template-client</artifactId>
 	<version>2.1-SNAPSHOT</version>
-	<packaging>pom</packaging>
 
-	<name>Insurance Lib : Notification daemon</name>
-
-	<modules>
-		<module>template-client</module>
-		<module>beans</module>
-		<module>app</module>
-	</modules>
+	<name>Insurance Lib : Notification : Template EJB-client</name>
 
 	<properties>
 		<!-- BOMS -->
 		<java-commons.version>1.2</java-commons.version>
 		<javax-javaee-bom.version>7.0a</javax-javaee-bom.version>
-		<payara-bom.version>4.1.2-2</payara-bom.version>
-		<!-- tech -->
-		<lapsa-jms-rpc.version>1.0</lapsa-jms-rpc.version>
-		<lapsa-text.version>1.1</lapsa-text.version>
-		<lapsa-mail.version>2.1</lapsa-mail.version>
-		<insurance-shared.version>1.0</insurance-shared.version>
-		<insurance-domain.version>2.5-SNAPSHOT</insurance-domain.version>
 	</properties>
 
 	<dependencyManagement>
@@ -50,72 +36,34 @@
 				<scope>import</scope>
 				<type>pom</type>
 			</dependency>
-			<dependency>
-				<groupId>tech.lapsa.payara</groupId>
-				<artifactId>payara-bom</artifactId>
-				<version>${payara-bom.version}</version>
-				<scope>import</scope>
-				<type>pom</type>
-			</dependency>
-			<dependency>
-				<groupId>tech.lapsa.lapsa</groupId>
-				<artifactId>lapsa-mail-root</artifactId>
-				<version>${lapsa-mail.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-			<!-- tech -->
-			<dependency>
-				<groupId>tech.lapsa.lapsa</groupId>
-				<artifactId>lapsa-jms-rpc</artifactId>
-				<version>${lapsa-jms-rpc.version}</version>
-				<type>ejb</type>
-			</dependency>
-			<dependency>
-				<groupId>tech.lapsa.lapsa</groupId>
-				<artifactId>lapsa-text</artifactId>
-				<version>${lapsa-text.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>tech.lapsa.insurance</groupId>
-				<artifactId>insurance-shared</artifactId>
-				<version>${insurance-shared.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>tech.lapsa.insurance</groupId>
-				<artifactId>insurance-domain</artifactId>
-				<version>${insurance-domain.version}</version>
-			</dependency>
-			<!-- own -->
-			<dependency>
-				<groupId>${project.groupId}</groupId>
-				<artifactId>insurance-notification-daemon-template-client</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>${project.groupId}</groupId>
-				<artifactId>insurance-notification-daemon</artifactId>
-				<version>${project.version}</version>
-				<type>ejb</type>
-			</dependency>
-			<dependency>
-				<groupId>${project.groupId}</groupId>
-				<artifactId>insurance-notification-daemon-app</artifactId>
-				<version>${project.version}</version>
-				<type>ear</type>
-			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
+	<dependencies>
+		<!-- tech -->
+		<dependency>
+			<groupId>tech.lapsa.java</groupId>
+			<artifactId>java-commons</artifactId>
+			<scope>compile</scope>
+			<optional>false</optional>
+		</dependency>
+		<!-- JavaEE -->
+		<dependency>
+			<groupId>javax.ejb</groupId>
+			<artifactId>javax.ejb-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+
 	<scm>
-		<connection>scm:git:https://gitlab.lapsa.tech/lapsa/insurance/notification-daemon.git</connection>
-		<developerConnection>scm:git:https://gitlab.lapsa.tech/lapsa/insurance/notification-daemon.git</developerConnection>
+		<connection>scm:git:https://gitlab.lapsa.tech/lapsa/insurance/notification-template-client.git</connection>
+		<developerConnection>scm:git:https://gitlab.lapsa.tech/lapsa/insurance/notification-template-client.git</developerConnection>
 		<tag>HEAD</tag>
 	</scm>
 
 	<issueManagement>
 		<system>gitlab</system>
-		<url>https://gitlab.lapsa.tech/lapsa/insurance/notification-daemon/issues</url>
+		<url>https://gitlab.lapsa.tech/lapsa/insurance/notification-template-client/issues</url>
 	</issueManagement>
 
 </project>
