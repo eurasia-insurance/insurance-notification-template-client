@@ -25,10 +25,10 @@
 		<java-commons.version>1.2</java-commons.version>
 		<javax-javaee-bom.version>7.0a</javax-javaee-bom.version>
 		<payara-bom.version>4.1.2-2</payara-bom.version>
-		<lapsa-mail.version>2.1</lapsa-mail.version>
 		<!-- tech -->
 		<lapsa-jms-rpc.version>1.0</lapsa-jms-rpc.version>
 		<lapsa-text.version>1.1</lapsa-text.version>
+		<lapsa-mail.version>2.1</lapsa-mail.version>
 		<insurance-shared.version>1.0</insurance-shared.version>
 		<insurance-domain.version>2.5-SNAPSHOT</insurance-domain.version>
 	</properties>
