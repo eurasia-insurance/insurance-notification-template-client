@@ -10,6 +10,7 @@
 	<groupId>tech.lapsa.insurance</groupId>
 	<artifactId>insurance-notification-template-client</artifactId>
 	<version>CURRENT-SNAPSHOT</version>
+	<packaging>jar</packaging>
 
 	<name>Insurance Lib : Notification : Template EJB-client</name>
 
